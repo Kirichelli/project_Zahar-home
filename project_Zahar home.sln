@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "project_Zahar home", "project_Zahar home\project_Zahar home.csproj", "{A2CB62B4-C485-456A-B8A2-74A6DF704855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "project_Zahar home", "project_Zahar home\project_Zahar home.csproj", "{A2CB62B4-C485-456A-B8A2-74A6DF704855}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "project_Zahar_home.Storage", "project_Zahar_home.Storage\project_Zahar_home.Storage.csproj", "{EBCF1028-C111-422B-BDA1-5A2DA97BD350}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A2CB62B4-C485-456A-B8A2-74A6DF704855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2CB62B4-C485-456A-B8A2-74A6DF704855}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2CB62B4-C485-456A-B8A2-74A6DF704855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBCF1028-C111-422B-BDA1-5A2DA97BD350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBCF1028-C111-422B-BDA1-5A2DA97BD350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBCF1028-C111-422B-BDA1-5A2DA97BD350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBCF1028-C111-422B-BDA1-5A2DA97BD350}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

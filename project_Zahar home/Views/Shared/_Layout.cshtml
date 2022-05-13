@@ -1,49 +1,100 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - project_Zahar_home</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/project_Zahar_home.styles.css" asp-append-version="true" />
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="~/css/style.min.css">
+   <link rel="icon" href="/img/logo/logo.png" type="image/svg">
+   <title>Zahar Home</title>
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">project_Zahar_home</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+   <div class="wrapper">
+      <header id="header" class="header lock-padding">
+   <div class="header__container container">
+      <div class="header__logo"><a href="/Home">
+            <picture><source srcset="~/img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo"></picture>
+         </a>
+      </div>
+      <nav class="header__menu">
+         <ul class="header__items">
+            <li><a class="menu__link" href="/Home/Recipes">Каталог</a></li>
+            <li><a class="menu__link" href="/Home/Info">О нас</a></li>
+            <li><a class="menu__link" href="/Home/Error_404">Контакты</a></li>
+            <li class="header-link"><a class="menu__link" href="#">
+                  <picture><source srcset="~/img/header/darkMode.webp" type="image/webp"><img src="img/header/darkMode.png" alt="darkMode"></picture>
+               </a></li>
+            <li class="header-link"><a class="menu__link popup-link" href="#popup">
+                  <picture><source srcset="~/img/header/user.webp" type="image/webp"><img src="img/header/user.png" alt="user"></picture>
+               </a></li>
+         </ul>
+      </nav>
+      <div class="header__burger"><span></span></div>
+   </div>
+   <div id="popup" class="popup">
+      <div class="popup__body">
+         <div class="popup__content content-popup">
+            <!-- <a href="#" class="popup__close close-popup"></a> Хйня для закрытия попапа, раскомментить -->
+            <div class="content-popup__head head-popup">
+               <div class="head-popup__logo">
+                  <picture><source srcset="~/img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo"></picture>
+               </div>
+               <div class="head-popup__title">Zahar Home</div>
             </div>
-        </nav>
-    </header>
+            <div class="content-popup__body body-popup">
+               <div class="body-popup__title">Войти в <span>свой аккаунт</span></div>
+               <div class="body-popup__form">
+                  <form class="form-sign">
+                     <input class="name place-form" type="text" name="name" placeholder="Имя пользователя">
+                     <input class="pass place-form" type="text" name="pass" placeholder="Пароль">
+                     <input class="custom-checkbox know" type="checkbox" id="know" name="know" value="yes">
+                     <label class="label" for="know">Запомнить меня</label>
+                     <input class="input" type="submit" value="Войти" name="submit">
+                  </form>
+               </div>
+               <a href="/Home/Registration" class="body-popup__registration button-reg">Зарегистрироваться</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - project_Zahar_home - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+      <footer class="footer">
+   <div class="footer__container container">
+      <div class="footer__content content-footer">
+         <div class="footer__image">
+            <picture><source srcset="~/img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo"></picture>
+         </div>
+         <div class="footer__links">
+            <div class="footer__title">О компании</div>
+            <ul class="footer__list">
+               <li><a href="#">О нас</a></li>
+               <li><a href="#">Контакты</a></li>
+            </ul>
+         </div>
+         <div class="footer__social">
+            <div class="footer__title">Следуйте за нами</div>
+            <div class="footer-social__content content-social">
+               <a href="#" class="content-social__link">
+                  <picture><source srcset="~/img/footer/vk.webp" type="image/webp"><img src="img/footer/vk.png" alt="vk"></picture>
+               </a>
+               <a href="#" class="content-social__link">
+                  <picture><source srcset="~/img/footer/insta.webp" type="image/webp"><img src="img/footer/insta.png" alt="insta"></picture>
+               </a>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="footer__copy">Copyrights© 2022 Zahar Home Все права защищены.</div>
+</footer>
+   </div>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js?_v=20220512204129"></script>
+   <script src="~/js/app.min.js"></script>
 </body>
 </html>

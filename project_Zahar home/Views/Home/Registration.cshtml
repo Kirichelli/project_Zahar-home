@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Registrarion Page";
+}
+
+ <main>
+         <section class="registration">
+            <div class="registration__container container">
+               <div class="registration__content content-registration">
+                  <h2 class="dish__title">Регистрация</h2>
+                  <form class="form-reg">
+                     <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Имя пользователя</div>
+                        <div class="block-registration__place">
+                           <input class="name place-form" type="text" name="name" placeholder="Имя пользователя">
+                        </div>
+                     </div>
+                     <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Электронная почта</div>
+                        <div class="block-registration__place">
+                           <input class="email place-form" type="text" name="email" placeholder="E-Mail">
+                        </div>
+                     </div>
+                     <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Пароль</div>
+                        <div class="block-registration__place">
+                           <input class="pass place-form" type="password" name="pass" placeholder="Пароль">
+                        </div>
+                     </div>
+                     <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Подтвердите пароль</div>
+                        <div class="block-registration__place">
+                           <input class="pass place-form" type="password" name="pass" placeholder="Пароль">
+                        </div>
+                     </div>
+                     <input class="input button-reg" type="submit" value="Зарегистрироваться" name="submit">
+                  </form>
+                  <div class="content-registration__enter">Уже есть аккаунт? <a class="popup-link"
+                        href="#popup">Войти</a></div>
+               </div>
+               <div class="registration__decor decor-registration">
+                  <div class="decor-registration__text text-decor">Еще не зарегистрирован? <br> Тогда чего же ты ждешь?
+                     <br> Кулинарный мир Захара ждет тебя!
+                  </div>
+                  <div class="decor-registration__image image-decor">
+                     <picture><source srcset="~/img/content/reg.webp" type="image/webp"><img src="~/img/content/reg.png" alt="reg"></picture>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </main>
