@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\project_Zahar_home.Logic\project_Zahar_home.Logic.csproj" />
     <ProjectReference Include="..\project_Zahar_home.Storage\project_Zahar_home.Storage.csproj" />
   </ItemGroup>
 

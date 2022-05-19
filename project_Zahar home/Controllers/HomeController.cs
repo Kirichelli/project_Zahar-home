@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using project_Zahar_home.Logic.Dishes;
 using project_Zahar_home.Models;
 using System.Diagnostics;
 
@@ -7,10 +8,11 @@ namespace project_Zahar_home.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IDishManager _manager;
+        public HomeController(ILogger<HomeController> logger, IDishManager manager)
         {
             _logger = logger;
+            _manager = manager;
         }
 
         public IActionResult Index()
@@ -38,9 +40,10 @@ namespace project_Zahar_home.Controllers
             return View();
         }
 
-        public IActionResult Recipes()
+        public async Task<IActionResult> Recipes()
         {
-            return View();
+            var dishes = await _manager.GetAll();
+            return View(dishes);
         }
 
         public IActionResult Registration()
