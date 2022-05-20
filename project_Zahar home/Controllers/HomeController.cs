@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using project_Zahar_home.Logic.Dishes;
+using project_Zahar_home.Logic.Ratings;
 using project_Zahar_home.Logic.Users;
 using project_Zahar_home.Models;
 using System.Diagnostics;
@@ -10,11 +11,12 @@ namespace project_Zahar_home.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IDishManager _dishManager;
-        private readonly IUserManager _userManager;
-        public HomeController(ILogger<HomeController> logger, IDishManager manager)
+        private readonly IRatingManager _ratingManager;
+        public HomeController(ILogger<HomeController> logger, IDishManager dishManager, IRatingManager ratingManager)
         {
             _logger = logger;
-            _dishManager = manager;
+            _dishManager = dishManager;
+            _ratingManager = ratingManager;
         }
 
         public IActionResult Index()

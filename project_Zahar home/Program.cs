@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using project_Zahar_home.Logic.Dishes;
+using project_Zahar_home.Logic.Ratings;
 using project_Zahar_home.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ var services = builder.Services;
 // Add services to the container.
 services.AddControllersWithViews();
 services.AddScoped<IDishManager, DishManager>();
+services.AddScoped<IRatingManager, RatingManager>();
 
 // получаем строку подключения из файла конфигурации
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
