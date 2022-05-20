@@ -7,10 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "project_Zahar home", "proje
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "project_Zahar_home.Storage", "project_Zahar_home.Storage\project_Zahar_home.Storage.csproj", "{EBCF1028-C111-422B-BDA1-5A2DA97BD350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "project_Zahar home.Logic", "project_Zahar home.Logic\project_Zahar home.Logic.csproj", "{276CDBC7-73A6-4054-942E-2296851216B5}"
-	ProjectSection(ProjectDependencies) = postProject
-		{EBCF1028-C111-422B-BDA1-5A2DA97BD350} = {EBCF1028-C111-422B-BDA1-5A2DA97BD350}
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "project_Zahar_home.Logic", "project_Zahar_home.Logic\project_Zahar_home.Logic.csproj", "{FF94717C-5346-4BF3-B717-97209C482A83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +23,10 @@ Global
 		{EBCF1028-C111-422B-BDA1-5A2DA97BD350}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBCF1028-C111-422B-BDA1-5A2DA97BD350}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBCF1028-C111-422B-BDA1-5A2DA97BD350}.Release|Any CPU.Build.0 = Release|Any CPU
-		{276CDBC7-73A6-4054-942E-2296851216B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{276CDBC7-73A6-4054-942E-2296851216B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{276CDBC7-73A6-4054-942E-2296851216B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{276CDBC7-73A6-4054-942E-2296851216B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF94717C-5346-4BF3-B717-97209C482A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF94717C-5346-4BF3-B717-97209C482A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF94717C-5346-4BF3-B717-97209C482A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF94717C-5346-4BF3-B717-97209C482A83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
