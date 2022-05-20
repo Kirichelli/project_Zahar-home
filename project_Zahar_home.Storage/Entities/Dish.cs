@@ -9,15 +9,14 @@
         public string Discription { get; set; }
 
         public string Ingredients { get; set; }
-
         public int Calories { get; set; }
-        public int Type_id { get; set; }
         public int Cook_Time { get; set; }
         public string Level { get; set; }
         public int Category_id { get; set; }
+        public int Rating_id { get; set; }
+        public int Type_Id { get; set; }
 
-
-
-
+        [ForeignKey(nameof(Type_Id))]
+        public virtual Type_Of_Dish Type_Of_Dish { get; set; }
     }
 }

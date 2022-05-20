@@ -4,7 +4,7 @@
 
 namespace project_Zahar_home.Storage.Migrations
 {
-    public partial class First : Migration
+    public partial class Test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,6 +48,27 @@ namespace project_Zahar_home.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Ratings",
+                columns: table => new
+                {
+                    Rating_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    User_Id = table.Column<int>(type: "int", nullable: false),
+                    Rating_Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dish_Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ratings", x => x.Rating_Id);
+                    table.ForeignKey(
+                        name: "FK_Ratings_Dishes_Dish_Id",
+                        column: x => x.Dish_Id,
+                        principalTable: "Dishes",
+                        principalColumn: "Dish_Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -69,33 +90,6 @@ namespace project_Zahar_home.Storage.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Ratings",
-                columns: table => new
-                {
-                    Rating_Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Rating_Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    User_Id = table.Column<int>(type: "int", nullable: false),
-                    Dish_Id = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ratings", x => x.Rating_Id);
-                    table.ForeignKey(
-                        name: "FK_Ratings_Dishes_Dish_Id",
-                        column: x => x.Dish_Id,
-                        principalTable: "Dishes",
-                        principalColumn: "Dish_Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Ratings_Users_User_Id",
-                        column: x => x.User_Id,
-                        principalTable: "Users",
-                        principalColumn: "User_Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Favourites_Dish_Id",
                 table: "Favourites",
@@ -105,11 +99,6 @@ namespace project_Zahar_home.Storage.Migrations
                 name: "IX_Ratings_Dish_Id",
                 table: "Ratings",
                 column: "Dish_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ratings_User_Id",
-                table: "Ratings",
-                column: "User_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Favourite_Id",

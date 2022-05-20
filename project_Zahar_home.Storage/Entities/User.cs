@@ -13,9 +13,15 @@
         public string Email { get; set; }
 
         [Required]
+        public int Cooked_Id { get; set; }
+
+        [ForeignKey(nameof(Cooked_Id))]
+        public virtual Cooked Cooked { get; set; }
         public int Favourite_Id { get; set; }
 
-       [ForeignKey(nameof(Favourite_Id))]
-       public virtual Favourite Favourite { get; set; }
+        [ForeignKey(nameof(Favourite_Id))]
+        public virtual Favourite Favourite { get; set; }
     }
+
+    
 }
