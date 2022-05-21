@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace project_Zahar_home.Logic.Type_Of_Dish
+namespace project_Zahar_home.Logic.Typies_Of_Dish
 {
-    internal interface IType_Of_Dish
+    public interface IType_Of_DishManager
     {
+        Task<IList<Type_Of_Dish>> GetAll();
     }
 }

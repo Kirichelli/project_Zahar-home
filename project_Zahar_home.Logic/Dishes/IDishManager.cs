@@ -10,6 +10,7 @@ namespace project_Zahar_home.Logic.Dishes
     {
         Task<IList<Dish>> GetAll();
         Task Create(Dish dish);
-        Task Delete(int id);  
+        Task Delete(int id);
+        Task<IList<Dish>> nameFilter(string name);
     }
 }

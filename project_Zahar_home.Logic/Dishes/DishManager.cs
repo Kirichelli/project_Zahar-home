@@ -33,5 +33,7 @@ namespace project_Zahar_home.Logic.Dishes
         }
 
         public async Task<IList<Dish>> GetAll() => await _context.Dishes.ToListAsync();
+
+        public async Task<IList<Dish>> nameFilter(string searchString) => await _context.Dishes.Where(d => d.Name_Dish.Contains(searchString)).ToListAsync();
     }
 }
