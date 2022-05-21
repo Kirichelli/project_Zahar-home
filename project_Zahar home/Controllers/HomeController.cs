@@ -34,22 +34,6 @@ namespace project_Zahar_home.Controllers
             return View();
         }
 
-        public IActionResult Info()
-        {
-            return View();
-        }
-
-        public IActionResult Personal_account()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> Recipes()
-        {
-            var dishes = await _dishManager.GetAll();
-            return View(dishes);
-        }
-
         public IActionResult Registration()
         {
             return View();
