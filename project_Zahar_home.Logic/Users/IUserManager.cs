@@ -9,7 +9,9 @@ namespace project_Zahar_home.Logic.Users
     public interface IUserManager
     {
         Task<IList<User>> GetAll();
-        Task Create(User user);
+        Task Add(User user);
+        Task<User> getUser(string email);
+        Task<User> getUserWithRole(string email, string password);
         Task Delete(int id);
     }
 }

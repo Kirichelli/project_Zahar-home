@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using project_Zahar_home.Logic.Dishes;
 using project_Zahar_home.Logic.Ratings;
+using project_Zahar_home.Logic.Typies_Of_Dish;
+using project_Zahar_home.Logic.Users;
 using project_Zahar_home.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ var services = builder.Services;
 services.AddControllersWithViews();
 services.AddScoped<IDishManager, DishManager>();
 services.AddScoped<IRatingManager, RatingManager>();
+services.AddScoped<IUserManager, UserManager>();
+services.AddScoped<IType_Of_DishManager, Type_Of_DishManager>();
 
 // получаем строку подключения из файла конфигурации
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
