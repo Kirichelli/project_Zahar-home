@@ -4,7 +4,7 @@
     {
         [Key]
         public int Rating_user_id { get; set; }
-        [Required]
+
         public int User_Id { get; set; }
 
         [ForeignKey(nameof(User_Id))]

@@ -126,15 +126,15 @@ namespace project_Zahar_home.Storage.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Rating_Id"), 1L, 1);
 
-                    b.Property<int>("Rating_Value")
+                    b.Property<int>("Dish_Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Rating_user_id")
+                    b.Property<int>("Rating_Value")
                         .HasColumnType("int");
 
                     b.HasKey("Rating_Id");
 
-                    b.HasIndex("Rating_user_id");
+                    b.HasIndex("Dish_Id");
 
                     b.ToTable("Ratings");
                 });
@@ -176,7 +176,7 @@ namespace project_Zahar_home.Storage.Migrations
 
                     b.HasIndex("Ingridient_id");
 
-                    b.ToTable("Type_Of_Dish");
+                    b.ToTable("Type_Of_Dishes");
                 });
 
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.User", b =>
@@ -237,13 +237,13 @@ namespace project_Zahar_home.Storage.Migrations
 
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Rating", b =>
                 {
-                    b.HasOne("project_Zahar_home.Storage.Entities.Rating_user", "Rating_user")
+                    b.HasOne("project_Zahar_home.Storage.Entities.Dish", "Dish")
                         .WithMany()
-                        .HasForeignKey("Rating_user_id")
+                        .HasForeignKey("Dish_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Rating_user");
+                    b.Navigation("Dish");
                 });
 
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Rating_user", b =>

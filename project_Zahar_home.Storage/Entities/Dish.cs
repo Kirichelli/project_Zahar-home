@@ -5,9 +5,7 @@
         [Key]
         public int Dish_Id { get; set; }
         public string Name_Dish { get; set; }
-
         public string Discription { get; set; }
-
         public string Ingredients { get; set; }
         public int Calories { get; set; }
         public int Cook_Time { get; set; }
