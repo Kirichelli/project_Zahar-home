@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using project_Zahar_home.Logic.Dishes;
 using project_Zahar_home.Logic.Ratings;
@@ -16,6 +17,14 @@ var connectionString = builder.Configuration.GetConnectionString("DbConnection")
 
 // добавляем контекст ApplicationContext в качестве сервиса в приложение
 services.AddDbContext<RecipeContext>(options => options.UseSqlServer(connectionString));
+services.AddDbContext<UserContext>(options => options.UseSqlServer(connectionString));
+
+services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -31,6 +40,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(//проверка

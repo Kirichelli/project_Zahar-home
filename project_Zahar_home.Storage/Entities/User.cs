@@ -18,6 +18,9 @@
         [ForeignKey(nameof(Cooked_Id))]
         public virtual Cooked Cooked { get; set; }
 
+        public int? RoleId { get; set; }
+        public Role Role { get; set; }
+
     }
 
     
