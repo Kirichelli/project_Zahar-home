@@ -15,7 +15,7 @@ namespace project_Zahar_home.Logic.Typies_Of_Dish
             _context = context;
         }
 
-        public Task<IList<Type_Of_Dish>> GetAll()
+        public Task<IList<Type_Of_Kitchen>> GetAll()
         {
             throw new NotImplementedException();
         }

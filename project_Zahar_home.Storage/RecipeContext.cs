@@ -11,9 +11,8 @@ namespace project_Zahar_home.Storage
         public DbSet<User> Users { get; set; }
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Rating> Ratings { get; set; }
-        public DbSet<Rating_user> Rating_Users { get; set; }
         public DbSet<Favourite> Favourites { get; set; }
-        public DbSet<Type_Of_Dish> Type_Of_Dishes { get; set; }
+        public DbSet<Type_Of_Kitchen> Type_Of_Kitchens { get; set; }
         public DbSet<Cooked> Cooked { get; set; }
 
 

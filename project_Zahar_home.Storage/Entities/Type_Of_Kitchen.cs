@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace project_Zahar_home.Storage.Entities
 {
-    public class Type_Of_Dish
+    public class Type_Of_Kitchen
     {
         [Key]
         public int Type_Id { get; set; }
