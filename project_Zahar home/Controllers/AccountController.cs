@@ -35,7 +35,7 @@ namespace project_Zahar_home.Controllers
 
                     await Authenticate(user); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Personal_account", "Account");
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -63,6 +63,10 @@ namespace project_Zahar_home.Controllers
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
             return View(model);
+        }
+        public IActionResult Personal_account()
+        {
+            return View();
         }
         private async Task Authenticate(User user)
         {

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model project_Zahar_home.Models.LoginModel
+<!DOCTYPE html>
 <html lang="en">
 <head>
    <meta charset="UTF-8">
@@ -46,14 +47,14 @@
                <div class="body-popup__title">Войти в <span>свой аккаунт</span></div>
                <div class="body-popup__form">
                   <form class="form-sign">
-                     <input class="name place-form" type="text" name="name" placeholder="Имя пользователя">
-                     <input class="pass place-form" type="text" name="pass" placeholder="Пароль">
+                     <input class="name place-form" type="text" name="Email" placeholder="Имя пользователя">
+                     <input class="pass place-form" type="text" name="Password" placeholder="Пароль">
                      <input class="custom-checkbox know" type="checkbox" id="know" name="know" value="yes">
                      <label class="label" for="know">Запомнить меня</label>
                      <input class="input" type="submit" value="Войти" name="submit">
                   </form>
                </div>
-               <a href="/Home/Registration" class="body-popup__registration button-reg">Зарегистрироваться</a>
+               <a href="/Account/Register" class="body-popup__registration button-reg">Зарегистрироваться</a>
             </div>
          </div>
       </div>
