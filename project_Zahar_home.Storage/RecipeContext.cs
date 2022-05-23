@@ -9,6 +9,7 @@ namespace project_Zahar_home.Storage
 
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Favourite> Favourites { get; set; }

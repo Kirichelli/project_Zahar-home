@@ -9,29 +9,36 @@ namespace project_Zahar_home.Logic.Users
 {
     public class UserManager : IUserManager
     {
-        private readonly RecipeContext _context;
+        private readonly RecipeContext _recipeContext;
 
         public UserManager(RecipeContext context)
         {
-            _context = context;
+            _recipeContext = context;
         }
-    
-        public async Task Create(User user)
+
+        public async Task Add(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            Role userRole = await _recipeContext.Roles.FirstOrDefaultAsync(r => r.Name == "user");
+            if (userRole != null)
+                user.Role = userRole;
+            _recipeContext.Users.Add(user);
+            await _recipeContext.SaveChangesAsync();
         }
 
         public async Task Delete(int id)
         {
-            var user = _context.Users.FirstOrDefault(u => u.User_Id == id);
+            var user = _recipeContext.Users.FirstOrDefault(u => u.User_Id == id);
             if (user == null)
             {
-                _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
+                _recipeContext.Users.Remove(user);
+                await _recipeContext.SaveChangesAsync();
             }
         }
 
-        public async Task<IList<User>> GetAll() => await _context.Users.ToListAsync();
+        public async Task<IList<User>> GetAll() => await _recipeContext.Users.ToListAsync();
+
+        public async Task<User> getUser(string email) => await _recipeContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+        public async Task<User> getUserWithRole(string email, string password) => await _recipeContext.Users.Include(u => u.Role).FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
     }
 }
