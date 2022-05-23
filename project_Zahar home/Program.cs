@@ -21,7 +21,6 @@ var connectionString = builder.Configuration.GetConnectionString("DbConnection")
 
 // добавляем контекст ApplicationContext в качестве сервиса в приложение
 services.AddDbContext<RecipeContext>(options => options.UseSqlServer(connectionString));
-services.AddDbContext<UserContext>(options => options.UseSqlServer(connectionString));
 
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
