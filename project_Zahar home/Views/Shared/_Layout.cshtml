@@ -9,7 +9,6 @@
    <link rel="icon" href="/img/logo/logo.png" type="image/svg">
    <title>Zahar Home</title>
 </head>
-
 <body>
    <div class="wrapper">
       <header id="header" class="header lock-padding">
@@ -26,8 +25,14 @@
             <li class="header-link"><a class="menu__link" href="#">
                   <picture><source srcset="~/img/header/darkMode.webp" type="image/webp"><img src="img/header/darkMode.png" alt="darkMode"></picture>
                </a></li>
-            <li class="header-link"><a class="menu__link popup-link" href="#popup">
-                  <picture><source srcset="~/img/header/user.webp" type="image/webp"><img src="img/header/user.png" alt="user"></picture>
+            <li class="header-link"><a class="menu__link popup-link" href ="#popup" @*href="/Account/Login"*@>
+                                @if (ViewBag.User == null)//если пользователь не вошел
+                                {
+                                     <picture><source srcset="~/img/header/user.webp" type="image/webp"><img src="img/header/user.png" alt="user" ></picture>
+                                }
+                                else{
+                                <picture><source srcset="~/img/content/user.webp" type="image/webp"><img src="img/content/user.png" alt="user" ></picture>
+                                }
                </a></li>
          </ul>
       </nav>
@@ -46,21 +51,24 @@
             <div class="content-popup__body body-popup">
                <div class="body-popup__title">Войти в <span>свой аккаунт</span></div>
                <div class="body-popup__form">
-                  <form class="form-sign">
-                     <input class="name place-form" type="text" name="Email" placeholder="Имя пользователя">
-                     <input class="pass place-form" type="text" name="Password" placeholder="Пароль">
+<form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
+     <div class="form-sign">
+                     <input class="name place-form" type="text" asp-for="Email" placeholder="Имя пользователя">
+                     <input class="pass place-form" type="text" asp-for="Password" placeholder="Пароль">
                      <input class="custom-checkbox know" type="checkbox" id="know" name="know" value="yes">
                      <label class="label" for="know">Запомнить меня</label>
                      <input class="input" type="submit" value="Войти" name="submit">
-                  </form>
+                     </div>
+                     </form>
                </div>
+                              
+
                <a href="/Account/Register" class="body-popup__registration button-reg">Зарегистрироваться</a>
             </div>
          </div>
       </div>
    </div>
 </header>
-
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

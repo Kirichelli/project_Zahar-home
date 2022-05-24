@@ -1,11 +1,41 @@
-﻿@model project_Zahar_home.Views.Account.Personal_accountModel
-
-      <main>
+﻿@page
          <section class="registration">
             <div class="registration__container container">
                <div class="registration__content content-registration">
                   <h2 class="dish__title">Аккаунт</h2>
-                  <input class="input button-reg" type="submit" value="Выйти из аккаунта" name="submit">
+                                    <div>Доброе утро,
+                    @if (ViewBag.User.Email == "admin")
+                    {
+                        <div>Администратор</div>
+                    }
+                    else
+                    {
+                        <div>Пользователь</div>
+                    }
+                </div>
+                  <form class="form-reg">
+                     <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Имя пользователя</div>
+                        <div class="block-registration__place">
+                          @ViewBag.User.Email
+                        </div>
+                     </div>
+                     <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Электронная почта</div>
+                        <div class="block-registration__place">
+                           <input class="email place-form" type="text" name="email" placeholder="E-Mail">
+                        </div>
+                     </div>
+                  </form>
+               <div class="registration__decor decor-registration">
+                  <div class="decor-registration__image image-decor">
+                     <picture><source srcset="img/content/reg.webp" type="image/webp"><img src="img/content/reg.png" alt="reg"></picture>
+                  </div>
+               </div>
+            </div>
+                  <a asp-action="Logout" asp-controller="Account" class="input button-reg" type="submit" name="submit">Выйти из аккаунта</a>
             </div>
          </section>
-      </main>
+
+
+

@@ -24,6 +24,11 @@ namespace project_Zahar_home.Controllers
             return View();
         }
 
+        public IActionResult Recipes()
+        {
+            return View();
+        }
+
         public IActionResult Error_404()
         {
             return View();
@@ -38,7 +43,6 @@ namespace project_Zahar_home.Controllers
         {
             return View();
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

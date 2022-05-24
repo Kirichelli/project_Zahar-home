@@ -11,6 +11,8 @@ namespace project_Zahar_home.Controllers
     public class AccountController : Controller
     {
         private readonly IUserManager _manager;
+        private static User _user;
+        public int z = 0;
         public AccountController(IUserManager manager)
         {
             _manager = manager;
@@ -35,8 +37,11 @@ namespace project_Zahar_home.Controllers
                     await _manager.Add(user);
 
                     await Authenticate(user); // аутентификация
+                    _user = user;
+                    z = 1;//пока нигде не используется
 
                     return RedirectToAction("Personal_account", "Account");
+
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -57,9 +62,10 @@ namespace project_Zahar_home.Controllers
                 var user = await _manager.getUserWithRole(model.Email, model.Password);
                 if (user != null)
                 {
-                    await Authenticate(user); // аутентификация
-
-                    return RedirectToAction("Index", "Home");
+                    await Authenticate(user);// аутентификация
+                    _user = user;
+                    int z = 1;
+                    return RedirectToAction("Personal_account", "Account");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
@@ -67,6 +73,8 @@ namespace project_Zahar_home.Controllers
         }
         public IActionResult Personal_account()
         {
+            ViewBag.User = _user;
+            z = 0;
             return View();
         }
         private async Task Authenticate(User user)
@@ -83,11 +91,12 @@ namespace project_Zahar_home.Controllers
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
-
+        //Выход из аккаунта(Удаляем куки)
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            _user = null;
+            return RedirectToAction("Index", "Home");
         }
     }
 }
