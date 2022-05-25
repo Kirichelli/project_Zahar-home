@@ -9,5 +9,6 @@ namespace project_Zahar_home.Logic.Ratings
     public interface IRatingManager
     {
         Task<IList<Rating>> GetRatings();
+        Task<Rating> GetDishRating(int RatingId);
     }
 }
