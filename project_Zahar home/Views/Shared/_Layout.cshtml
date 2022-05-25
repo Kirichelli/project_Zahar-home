@@ -1,4 +1,5 @@
-﻿@model project_Zahar_home.Models.LoginModel
+﻿
+@model project_Zahar_home.Models.LoginModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,15 +26,18 @@
             <li class="header-link"><a class="menu__link" href="#">
                   <picture><source srcset="~/img/header/darkMode.webp" type="image/webp"><img src="img/header/darkMode.png" alt="darkMode"></picture>
                </a></li>
-            <li class="header-link"><a class="menu__link popup-link" href ="#popup" @*href="/Account/Login"*@>
-                                @if (ViewBag.User == null)//если пользователь не вошел
-                                {
+               @if (!Context.User.Identity.IsAuthenticated){            
+                   <li class="header-link"><a class="menu__link popup-link" href ="#popup">
+
                                      <picture><source srcset="~/img/header/user.webp" type="image/webp"><img src="img/header/user.png" alt="user" ></picture>
-                                }
-                                else{
-                                <picture><source srcset="~/img/content/user.webp" type="image/webp"><img src="img/content/user.png" alt="user" ></picture>
-                                }
+               
                </a></li>
+               }
+               else{            <a href="/Account/Personal_account">
+                                <picture><source srcset="~/img/content/user.webp" type="image/webp"><img src="img/content/user.png" alt="user" ></picture>
+                                
+               </a>}
+
          </ul>
       </nav>
       <div class="header__burger"><span></span></div>

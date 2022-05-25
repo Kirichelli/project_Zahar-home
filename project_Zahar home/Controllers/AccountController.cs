@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using project_Zahar_home.Logic.Users;
 using project_Zahar_home.Models;
 using project_Zahar_home.Storage.Entities;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
+
 
 namespace project_Zahar_home.Controllers
 {
@@ -25,6 +27,7 @@ namespace project_Zahar_home.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+/*        [Extension()]*/
         public async Task<IActionResult> Register(RegisterModel model)
         {
             if (ModelState.IsValid)
@@ -74,6 +77,7 @@ namespace project_Zahar_home.Controllers
         {
             ViewBag.User = _user;
             z = 0;
+            if (_user == null) { RedirectToAction("Register", "Account"); } 
             return View();
         }
         private async Task Authenticate(User user)
