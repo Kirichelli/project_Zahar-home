@@ -14,7 +14,6 @@ namespace project_Zahar_home.Controllers
     {
         private readonly IUserManager _manager;
         private static User _user;
-        public int z = 0;
         public AccountController(IUserManager manager)
         {
             _manager = manager;
@@ -41,7 +40,6 @@ namespace project_Zahar_home.Controllers
 
                     await Authenticate(user); // аутентификация
                     _user = user;
-                    z = 1;//пока нигде не используется
 
                     return RedirectToAction("Personal_account", "Account");
                 }
@@ -66,18 +64,15 @@ namespace project_Zahar_home.Controllers
                 {
                     await Authenticate(user);// аутентификация
                     _user = user;
-                    int z = 1;
                     return RedirectToAction("Personal_account", "Account");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
             return View(model);
         }
-        public IActionResult Personal_account()
+        public async Task<IActionResult> Personal_account()
         {
-            ViewBag.User = _user;
-            z = 0;
-            if (_user == null) { RedirectToAction("Register", "Account"); } 
+            if (_user == null) { RedirectToAction("Register", "Account"); }
             return View();
         }
         private async Task Authenticate(User user)

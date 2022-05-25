@@ -4,20 +4,20 @@
                <div class="registration__content content-registration">
                   <h2 class="dish__title">Аккаунт</h2>
                                     <div>Доброе утро,
-@*                    @if (Model.Email == "admin")
+                    @if (Context.User.Identity.Name == "admin")
                     {
                         <div>Администратор</div>
                     }
                     else
                     {
                         <div>Пользователь</div>
-                    }*@
+                    }
                 </div>
                   <form class="form-reg">
                      <div class="content-registration__block block-registration">
                         <div class="block-registration__name">Имя пользователя</div>
                         <div class="block-registration__place">
-                       @*   @Model.Email*@
+                       Context.User.Identity.Name
                         </div>
                      </div>
                      <div class="content-registration__block block-registration">
