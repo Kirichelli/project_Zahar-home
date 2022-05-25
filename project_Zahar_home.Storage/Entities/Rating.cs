@@ -4,7 +4,7 @@
     {
         [Key]
         public int Rating_Id { get; set; }
-
+        public int CountOfUsers { get; set; }
         public int Rating_Value { get; set; }
         [Required]
         public int User_Id { get; set; }

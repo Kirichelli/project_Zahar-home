@@ -7,7 +7,7 @@ namespace project_Zahar_home.Controllers
     public class DishController : Controller
     {
         private readonly IDishManager _manager;
-        private IList<Dish> dishes;
+        private Dish _dish;
         public DishController(IDishManager manager)
         {
             _manager = manager;
@@ -15,8 +15,14 @@ namespace project_Zahar_home.Controllers
 
         public async Task<IActionResult> Index(int id)
         {
-            var dish = await _manager.getDish(id);
-            return View(dish);
+            _dish = await _manager.getDish(id);
+            return View(_dish);
+        }
+
+        public async Task<IActionResult> ratingChange(int rating)
+        {
+            await _manager.changeRating(_dish.Rating_id, rating);
+            return View(_dish);
         }
 
     }

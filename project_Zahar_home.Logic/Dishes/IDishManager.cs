@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace project_Zahar_home.Logic.Dishes
 {
     public interface IDishManager
@@ -13,5 +8,6 @@ namespace project_Zahar_home.Logic.Dishes
         Task Delete(int id);
         Task<IList<Dish>> nameFilter(string name);
         Task<Dish> getDish(int id);
+        Task changeRating(int id, int rating);
     }
 }
