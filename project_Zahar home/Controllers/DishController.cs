@@ -21,7 +21,7 @@ namespace project_Zahar_home.Controllers
 
         public async Task<IActionResult> ratingChange(int rating)
         {
-            await _manager.changeRating(_dish.Rating_id, rating);
+            await _manager.changeRating(_dish.Rating_Id, rating);
             return View(_dish);
         }
 

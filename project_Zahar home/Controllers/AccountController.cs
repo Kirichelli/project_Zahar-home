@@ -41,7 +41,6 @@ namespace project_Zahar_home.Controllers
                     z = 1;//пока нигде не используется
 
                     return RedirectToAction("Personal_account", "Account");
-
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");

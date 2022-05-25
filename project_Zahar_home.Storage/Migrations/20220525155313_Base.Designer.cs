@@ -12,7 +12,7 @@ using project_Zahar_home.Storage;
 namespace project_Zahar_home.Storage.Migrations
 {
     [DbContext(typeof(RecipeContext))]
-    [Migration("20220523133414_Base")]
+    [Migration("20220525155313_Base")]
     partial class Base
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,9 +45,15 @@ namespace project_Zahar_home.Storage.Migrations
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Dish", b =>
                 {
                     b.Property<int>("Dish_Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Calories")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Dish_Id"), 1L, 1);
+
+                    b.Property<int>("Callories")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Carbohydrat")
                         .HasColumnType("int");
 
                     b.Property<int>("Category_id")
@@ -59,6 +65,9 @@ namespace project_Zahar_home.Storage.Migrations
                     b.Property<string>("Discription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fat")
+                        .HasColumnType("int");
 
                     b.Property<string>("Ingredients")
                         .IsRequired()
@@ -72,7 +81,10 @@ namespace project_Zahar_home.Storage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Rating_id")
+                    b.Property<int>("Protein")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating_Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Type_Id")
@@ -122,6 +134,9 @@ namespace project_Zahar_home.Storage.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Rating_Id"), 1L, 1);
+
+                    b.Property<int>("CountOfUsers")
+                        .HasColumnType("int");
 
                     b.Property<int>("Rating_Value")
                         .HasColumnType("int");
@@ -220,19 +235,11 @@ namespace project_Zahar_home.Storage.Migrations
 
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Dish", b =>
                 {
-                    b.HasOne("project_Zahar_home.Storage.Entities.Rating", "Rating")
-                        .WithMany()
-                        .HasForeignKey("Dish_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("project_Zahar_home.Storage.Entities.Type_Of_Kitchen", "Type_Of_Kitchen")
                         .WithMany()
                         .HasForeignKey("Type_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Rating");
 
                     b.Navigation("Type_Of_Kitchen");
                 });
