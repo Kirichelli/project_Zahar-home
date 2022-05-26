@@ -10,5 +10,6 @@ namespace project_Zahar_home.Logic.Ratings
     {
         Task<IList<Rating>> GetRatings();
         Task<Rating> GetDishRating(int RatingId);
+        IList<Rating> Sort(List<Rating> ratings, int? orderBy);
     }
 }
