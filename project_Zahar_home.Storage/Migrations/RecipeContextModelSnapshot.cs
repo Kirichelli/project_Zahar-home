@@ -136,6 +136,9 @@ namespace project_Zahar_home.Storage.Migrations
                     b.Property<int>("CountOfUsers")
                         .HasColumnType("int");
 
+                    b.Property<int>("Dish_Id")
+                        .HasColumnType("int");
+
                     b.Property<int>("Rating_Value")
                         .HasColumnType("int");
 
@@ -143,6 +146,8 @@ namespace project_Zahar_home.Storage.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Rating_Id");
+
+                    b.HasIndex("Dish_Id");
 
                     b.HasIndex("User_Id");
 
@@ -244,11 +249,19 @@ namespace project_Zahar_home.Storage.Migrations
 
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Rating", b =>
                 {
+                    b.HasOne("project_Zahar_home.Storage.Entities.Dish", "Dish")
+                        .WithMany()
+                        .HasForeignKey("Dish_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("project_Zahar_home.Storage.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("User_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Dish");
 
                     b.Navigation("User");
                 });

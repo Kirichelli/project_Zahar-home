@@ -11,11 +11,9 @@
         [ForeignKey(nameof(User_Id))]
         public virtual User User { get; set; }
 
-
-/*        [Required]
         public int Dish_Id { get; set; }
 
         [ForeignKey(nameof(Dish_Id))]
-        public virtual Dish Dish { get; set }*/
+        public virtual Dish Dish { get; set; }
     };
 }

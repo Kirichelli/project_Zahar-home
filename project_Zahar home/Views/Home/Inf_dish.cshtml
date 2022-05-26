@@ -1,6 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Dish";
-}
+﻿@*@model IList<project_Zahar_home.Models.RecipeViewModel>*@
       <main>
          <section class="dish">
             <div class="dish__container container">
@@ -37,7 +35,7 @@
                      </div>
                   </div>
                   <div class="content-dish__info info-dish">
-                     <p>Время готовки: 2ч. 30 мин.</p>
+                     <p>Время готовки: @*@Model.Dish.Cook_Time*@</p>
                      <p>Кол-во порций: 12</p>
                      <p>Сложность: низкая</p>
                   </div>

@@ -150,11 +150,18 @@ namespace project_Zahar_home.Storage.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CountOfUsers = table.Column<int>(type: "int", nullable: false),
                     Rating_Value = table.Column<int>(type: "int", nullable: false),
-                    User_Id = table.Column<int>(type: "int", nullable: false)
+                    User_Id = table.Column<int>(type: "int", nullable: false),
+                    Dish_Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ratings", x => x.Rating_Id);
+                    table.ForeignKey(
+                        name: "FK_Ratings_Dishes_Dish_Id",
+                        column: x => x.Dish_Id,
+                        principalTable: "Dishes",
+                        principalColumn: "Dish_Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Ratings_Users_User_Id",
                         column: x => x.User_Id,
@@ -172,6 +179,11 @@ namespace project_Zahar_home.Storage.Migrations
                 name: "IX_Dishes_Type_Id",
                 table: "Dishes",
                 column: "Type_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ratings_Dish_Id",
+                table: "Ratings",
+                column: "Dish_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ratings_User_Id",
@@ -197,25 +209,25 @@ namespace project_Zahar_home.Storage.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Dishes");
-
-            migrationBuilder.DropTable(
                 name: "Ratings");
 
             migrationBuilder.DropTable(
-                name: "Type_Of_Kitchens");
+                name: "Dishes");
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Ingridient");
+                name: "Type_Of_Kitchens");
 
             migrationBuilder.DropTable(
                 name: "Cooked");
 
             migrationBuilder.DropTable(
                 name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "Ingridient");
 
             migrationBuilder.DropTable(
                 name: "Favourites");
