@@ -12,9 +12,9 @@
                     <button>по названию</button>
                 </div>
                 <div class="head-catalog__search">
-                    <form class="search-form">
+                    <form asp-controller="Recipes" asp-action = "Index" class="search-form">
                         <button class="input" type="submit" value="" id="subscribe_form" name="submit"></button>
-                        <input class="search" type="text" name="search" placeholder="Введите название..">
+                        <input class="search" type="text" name="searchString" placeholder="Введите название..">
                     </form>
                 </div>
             </div>

@@ -26,9 +26,10 @@ namespace project_Zahar_home.Controllers
             }
             return View();
         }
-
-        public async Task<IActionResult> Filter(string searchString)
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchString)
         {
+            ViewBag.rvm = new List<RecipeViewModel>();
             var dishes = await _dishManager.nameFilter(searchString);
             foreach (var dish in dishes)
             {
