@@ -10,7 +10,7 @@ namespace project_Zahar_home.Controllers
     {
         private readonly IDishManager _dishManager;
         private readonly IRatingManager _ratingManager;
-        private RecipeViewModel rvm;
+        /*private RecipeViewModel rvm;*/
         public DishController(IDishManager manager, IRatingManager ratingManager)
         {
             _dishManager = manager;
@@ -21,14 +21,15 @@ namespace project_Zahar_home.Controllers
         {
             var dish = await _dishManager.getDish(dishId);
             var rating = await _ratingManager.GetDishRating(dish.Rating_Id);
-            rvm = new RecipeViewModel { Dish = dish, Rating = rating };
-            return View(rvm);
+            ViewBag.dish = dish;
+            ViewBag.rating = rating;
+            return View();
         }
 
         public async Task<IActionResult> ratingChange(int rating)
         {
-            await _dishManager.changeRating(rvm.Rating.Rating_Id, rating);
-            return View(rvm);
+            await _dishManager.changeRating(ViewBag.rating.Rating_Id, rating);
+            return View();
         }
 
     }
