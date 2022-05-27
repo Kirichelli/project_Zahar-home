@@ -43,14 +43,13 @@
                      <form asp-controller="Recipes" asp-action = "Filter" class="content-catalog__sidebar sidebar-catalog">
                         <div class="sidebar-catalog__head head-catalog">
                            <div class="head-catalog__title">Фильтры</div>
-                           <button class="head-catalog__clear">очистить</button>
+                           <button  class="head-catalog__clear">
+                               <a href="/Recipes/Index" class="popular__more">Очистить</a>
+                           </button>
                         </div>
                         <div class="sidebar-catalog__body body-catalog-sidebar">
                            <div class="body-catalog-sidebar__search">
-                              <form class="search-form">
-                                 <button class="input" type="submit" value="" id="subscribe_form" name="submit"></button>
-                                 <input class="search" type="text" name="search" placeholder="Введите название..">
-                              </form>
+
                            </div>
                            <div class="select" id="food">
                               <button type="button" class="select__toggle" name="food" value="" data-select="toggle"

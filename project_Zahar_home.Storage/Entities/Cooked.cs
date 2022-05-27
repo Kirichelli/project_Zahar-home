@@ -9,7 +9,14 @@ public class Cooked
 {
     [Key]
     public int Cooked_Id { get; set; }
-    public List<Dish> cookedDishes { get; set; }
+    public int User_Id { get; set; }
+    [ForeignKey(nameof(User_Id))]
+    public virtual User User { get; set; }
+    public  virtual List<Dish> cookedDishes { get; set; }
+    public  Cooked()
+    {
+        cookedDishes = new List<Dish>();
+    }
     public  int Favourite_Id { get; set; }
     [ForeignKey(nameof(Favourite_Id))]
     public virtual Favourite Favourite { get; set; }
