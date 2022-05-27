@@ -17,5 +17,6 @@ namespace project_Zahar_home.Storage
         public DbSet<Cooked> Cooked { get; set; }
 
 
+
     }
 }

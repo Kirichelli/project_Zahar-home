@@ -4,7 +4,11 @@
     {
         [Key]
         public int Rating_Id { get; set; }
-        public Dictionary<User,int> Users { get; set; }
+        public virtual Dictionary<User,int> Users { get; set; }
+        public Rating()
+        {
+            Users = new Dictionary<User,int>();
+        }
         public double Rating_Value { get; set; }
         //[Required]
         //public int User_Id { get; set; }
