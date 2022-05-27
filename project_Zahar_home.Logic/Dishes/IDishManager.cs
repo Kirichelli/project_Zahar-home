@@ -8,7 +8,7 @@ namespace project_Zahar_home.Logic.Dishes
         Task Delete(int id);
         Task<IList<Dish>> nameFilter(string name);
         Task<Dish> getDish(int id);
-        Task changeRating(int id, int rating);
-        IList<Dish> GetDishesByProperties(IList<Dish> dishes, string? level, int? calloriesMin, int? calloriesMax, int? proteinMin, int? proteinMax, int? carbohydratMin, int? carbohydratMax, int? fatMin, int? fatMax, string? typeName);
+        void changeRating(int id, int rating, string userEmail);
+        IList<Dish> GetDishesByProperties(IList<Dish> dishes, string level, int? calloriesMin, int? calloriesMax, int? proteinMin, int? proteinMax, int? carbohydratMin, int? carbohydratMax, int? fatMin, int? fatMax, string typeName);
     }
 }

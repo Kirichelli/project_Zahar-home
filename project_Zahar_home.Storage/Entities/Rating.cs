@@ -4,12 +4,12 @@
     {
         [Key]
         public int Rating_Id { get; set; }
-        public int CountOfUsers { get; set; }
-        public int Rating_Value { get; set; }
-        [Required]
-        public int User_Id { get; set; }
-        [ForeignKey(nameof(User_Id))]
-        public virtual User User { get; set; }
+        public Dictionary<User,int> Users { get; set; }
+        public double Rating_Value { get; set; }
+        //[Required]
+        //public int User_Id { get; set; }
+        //[ForeignKey(nameof(User_Id))]
+        //public virtual User User { get; set; }
 
         public int Dish_Id { get; set; }
 

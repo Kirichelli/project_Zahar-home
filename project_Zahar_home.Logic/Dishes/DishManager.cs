@@ -10,12 +10,20 @@ namespace project_Zahar_home.Logic.Dishes
             _context = context;
         }
 
-        public async Task changeRating(int id, int rating)
+        public async void changeRating(int id, int rating, string userEmail)
         {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.Equals(userEmail));
             var rate = await _context.Ratings.FirstOrDefaultAsync(r => r.Rating_Id == id);
-            int value = rate.Rating_Value * rate.CountOfUsers;
-            rate.CountOfUsers++;
-            rate.Rating_Value = (value + rating)/rate.CountOfUsers;
+            foreach(var u in rate.Users)
+            {
+                if (u.Key.Email.Equals(userEmail))
+                {
+                    return;
+                }
+            }
+            double value = rate.Rating_Value * rate.Users.Count;
+            rate.Users.Add(user,rating);
+            rate.Rating_Value = (value + rating)/rate.Users.Count;
             await _context.SaveChangesAsync();
         }
 

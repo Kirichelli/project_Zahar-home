@@ -28,8 +28,8 @@ namespace project_Zahar_home.Controllers
 
         public async Task<IActionResult> ratingChange(int rating)
         {
-            await _dishManager.changeRating(ViewBag.rating.Rating_Id, rating);
-            return View();
+            await _dishManager.changeRating(ViewBag.rating.Rating_Id, rating, HttpContext.User.Identity.Name);
+            return RedirectToAction("Index");
         }
 
     }
