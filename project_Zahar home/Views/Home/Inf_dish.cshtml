@@ -1,4 +1,5 @@
 ﻿@*@model IList<project_Zahar_home.Models.RecipeViewModel>*@
+    @page
       <main>
          <section class="dish">
             <div class="dish__container container">
@@ -35,7 +36,7 @@
                      </div>
                   </div>
                   <div class="content-dish__info info-dish">
-                     <p>Время готовки: @*@Model.Dish.Cook_Time*@</p>
+                     <p>Время готовки: @ViewBag.Dish.Cook_Time</p>
                      <p>Кол-во порций: 12</p>
                      <p>Сложность: низкая</p>
                   </div>

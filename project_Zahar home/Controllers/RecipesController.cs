@@ -10,7 +10,7 @@ namespace project_Zahar_home.Controllers
     {
         private readonly IDishManager _dishManager;
         private readonly IRatingManager _ratingManager;
-/*        private IList<RecipeViewModel>rvm;*/
+        private static Dictionary<Dish, Rating> rvm;
 
         public RecipesController(IDishManager manager, IRatingManager ratingManager)
         {
@@ -19,44 +19,54 @@ namespace project_Zahar_home.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            ViewBag.rvm = new Dictionary<Dish,Rating>();
-            var dishes = await _dishManager.GetAll();
-            foreach (var dish in dishes)
+            if (rvm == null)
             {
-                ViewBag.rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+                rvm = new Dictionary<Dish, Rating>();
+                var dishes = await _dishManager.GetAll();
+                foreach (var dish in dishes)
+                {
+                    rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+                }
             }
+            ViewBag.rvm = rvm;
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Search(string searchString)
         {
-            ViewBag.rvm = new Dictionary<Dish, Rating>();
+            rvm = new Dictionary<Dish, Rating>();
             var dishes = await _dishManager.nameFilter(searchString);
             foreach (var dish in dishes)
             {
-                ViewBag.rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
             }
-            
-            return View();
+            ViewBag.rvm = rvm;
+            return RedirectToAction("Index");
         }
 
-
-        public IActionResult Index(string level, int? calloriesMin, int? calloriesMax, int? proteinMin, int? proteinMax, int? carbohydratMin, int? carbohydratMax, int? fatMin, int? fatMax, int? ratingOrder, string typeName)
+        [HttpPost]
+        public async Task<IActionResult> FilterAsync(string? level, int? calloriesMin, int? calloriesMax, int? proteinMin, int? proteinMax, int? carbohydratMin, int? carbohydratMax, int? fatMin, int? fatMax, int? ratingOrder, string? typeName)
         {
-            IList<Dish> dishes = _dishManager.GetDishesByProperties(ViewBag.rvm.Values.ToList(), level, calloriesMin, calloriesMax, proteinMin, proteinMax, carbohydratMin, carbohydratMax, fatMin, fatMax, typeName);
-            var ratings = _ratingManager.Sort(ViewBag.rvm.Keys.ToList(), ratingOrder);
-            ViewBag.rvm = new Dictionary<Dish, Rating>();
+            rvm = new Dictionary<Dish, Rating>();
+            var dishess = await _dishManager.GetAll();
+            foreach (var dish in dishess)
+            {
+                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+            }
+            IList<Dish> dishes = _dishManager.GetDishesByProperties(rvm.Keys.ToList(), level, calloriesMin, calloriesMax, proteinMin, proteinMax, carbohydratMin, carbohydratMax, fatMin, fatMax, typeName);
+            var ratings = _ratingManager.Sort(rvm.Values.ToList(), ratingOrder);
+            rvm = new Dictionary<Dish, Rating>();
             foreach(var r in ratings)
             {
                 foreach(var dish in dishes)
                 {
                     if (dish.Rating_Id == r.Rating_Id)
                     {
-                        ViewBag.rvm.Add(dish,r);
+                        rvm.TryAdd(dish,r);
                     }
                 }
             }
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

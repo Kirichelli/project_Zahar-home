@@ -41,7 +41,7 @@ namespace project_Zahar_home.Logic.Dishes
 
         public async Task<IList<Dish>> nameFilter(string searchString) => await _context.Dishes.Where(d => d.Name_Dish.Contains(searchString)).ToListAsync();
 
-        public IList<Dish> GetDishesByProperties(IList<Dish> dishes , string level, int? calloriesMin, int? calloriesMax, int? proteinMin, int? proteinMax, int? carbohydratMin, int? carbohydratMax, int? fatMin, int? fatMax, string typeName)
+        public IList<Dish> GetDishesByProperties(IList<Dish> dishes , string? level, int? calloriesMin, int? calloriesMax, int? proteinMin, int? proteinMax, int? carbohydratMin, int? carbohydratMax, int? fatMin, int? fatMax, string? typeName)
         {
             if (!string.IsNullOrEmpty(level))
             {

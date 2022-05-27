@@ -5,14 +5,14 @@
         <div class="catalog__container container">
             <div class="catalog__head head-catalog">
                 <div class="head-catalog__filter">
-                    <button>по популярности</button>
-                    <button>по рейтингу</button>
+                    <button >по популярности</button>
+                    <button >по рейтингу</button>
                     <button>по кол-ву ингридиентов</button>
                     <button>по сложности</button>
                     <button>по названию</button>
                 </div>
                 <div class="head-catalog__search">
-                    <form asp-controller="Recipes" asp-action = "Index" class="search-form">
+                    <form asp-controller="Recipes" asp-action = "Search" class="search-form">
                         <button class="input" type="submit" value="" id="subscribe_form" name="submit"></button>
                         <input class="search" type="text" name="searchString" placeholder="Введите название..">
                     </form>
@@ -38,128 +38,9 @@
                                 </a>
                             }
                         @*}*@
-                        @*<a href="/Home/Inf_dish" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>
-                        <a href="#" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>
-                        <a href="#" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>
-                        <a href="#" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>
-                        <a href="#" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>
-                        <a href="#" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>
-                        <a href="#" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>
-                        <a href="#" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>
-                        <a href="#" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>
-                        <a href="#" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>
-                        <a href="#" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>
-                        <a href="#" class="body-catalog-menu__item item-catalog">
-                           <div class="item-catalog__image">
-                              <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
-                           </div>
-                           <div class="item-catalog__info info-catalog">
-                              <div class="item-popular__star">4.7</div>
-                              <button class="info-catalog__like"></button>
-                           </div>
-                           <div class="item-catalog__name">Греческий салат</div>
-                        </a>*@
+
                      </div>
-                     <div class="content-catalog__sidebar sidebar-catalog">
+                     <form asp-controller="Recipes" asp-action = "Filter" class="content-catalog__sidebar sidebar-catalog">
                         <div class="sidebar-catalog__head head-catalog">
                            <div class="head-catalog__title">Фильтры</div>
                            <button class="head-catalog__clear">очистить</button>
@@ -192,37 +73,50 @@
                            <div class="body-catalog__block block-catalog">
                               <div class="block-catalog__title">Каллории</div>
                               <div class="block-catalog__content content-block-catalog">
-                                 <div class="price-slider-result"><span class="first">0</span><span class="decor"></span><span
-                                       class="second">400</span></div>
+                                 <div class="price-slider-result">
+                                     <input class="first" type="text" value="0" name="calloriesMin" />
+                                     <span class="decor"></span>
+                                     <input class="second" type="text" value="400" name="calloriesMax" />
+                                 </div>
                                  <div class="price-slider"></div>
                               </div>
                            </div>
                            <div class="body-catalog__block block-catalog">
                               <div class="block-catalog__title">Белки, гр</div>
                               <div class="block-catalog__content content-block-catalog">
-                                 <div class="price-slider-result"><span class="first">0</span><span class="decor"></span><span
-                                       class="second">400</span></div>
+                                  <div class="price-slider-result">
+                                     <input class="first" type="text" value="0" name="proteinMin" />
+                                      <span class="decor"></span>
+                                     <input class="second" type="text" value="400" name="proteinMax" />
+                                  </div>
                                  <div class="price-slider"></div>
                               </div>
                            </div>
                            <div class="body-catalog__block block-catalog">
                               <div class="block-catalog__title">Жиры, гр</div>
                               <div class="block-catalog__content content-block-catalog">
-                                 <div class="price-slider-result"><span class="first">0</span><span class="decor"></span><span
-                                       class="second">400</span></div>
+                                  <div class="price-slider-result">
+                                     <input class="first" type="text" value="0" name="fatMin" />
+                                      <span class="decor"></span>
+                                     <input class="second" type="text" value="400" name="fatMax" />
+                                  </div>
                                  <div class="price-slider"></div>
                               </div>
                            </div>
                            <div class="body-catalog__block block-catalog">
                               <div class="block-catalog__title">Углеводы, гр</div>
                               <div class="block-catalog__content content-block-catalog">
-                                 <div class="price-slider-result"><span class="first">0</span><span class="decor"></span><span
-                                       class="second">400</span></div>
+                                 <div class="price-slider-result">
+                                     <input class="first" type="text" value="0" name="carbohydratMin" />
+                                      <span class="decor"></span>
+                                     <input class="second" type="text" value="400" name="carbohydratMax" />
+                                   </div>
                                  <div class="price-slider"></div>
                               </div>
                            </div>
+                           <button class="input" type="submit" value="" id="subscribe_form" name="submit"></button>
                         </div>
-                     </div>
+                     </form>
                   </div>
                </div>
                <a href="#" class="popular__more">Показать ещё</a>
