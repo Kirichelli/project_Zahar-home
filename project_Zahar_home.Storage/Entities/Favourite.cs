@@ -4,6 +4,6 @@
     {
         [Key]
         public int Favourite_Id { get; set; }
-
+        public List<Dish> favouriteDishes { get; set; }
     }
 }
