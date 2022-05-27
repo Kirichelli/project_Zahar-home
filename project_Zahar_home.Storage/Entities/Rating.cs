@@ -4,10 +4,10 @@
     {
         [Key]
         public int Rating_Id { get; set; }
-        public virtual Dictionary<User,int> Users { get; set; }
+        public virtual List<User> Users { get; set; }
         public Rating()
         {
-            Users = new Dictionary<User,int>();
+            Users = new List<User>();
         }
         public double Rating_Value { get; set; }
         //[Required]

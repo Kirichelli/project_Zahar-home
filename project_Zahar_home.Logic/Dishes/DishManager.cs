@@ -16,13 +16,13 @@ namespace project_Zahar_home.Logic.Dishes
             var rate = await _context.Ratings.FirstOrDefaultAsync(r => r.Rating_Id == id);
             foreach(var u in rate.Users)
             {
-                if (u.Key.Email.Equals(userEmail))
+                if (u.Email.Equals(userEmail))
                 {
                     return;
                 }
             }
             double value = rate.Rating_Value * rate.Users.Count;
-            rate.Users.Add(user,rating);
+            rate.Users.Add(user);
             rate.Rating_Value = (value + rating)/rate.Users.Count;
             await _context.SaveChangesAsync();
         }
