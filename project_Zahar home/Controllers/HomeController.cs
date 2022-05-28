@@ -28,16 +28,20 @@ namespace project_Zahar_home.Controllers
         {
             return View();
         }
-
+        public IActionResult Info()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
         public IActionResult Error_404()
         {
             return View();
         }
 
-        public IActionResult Inf_dish()
-        {
-            return View();
-        }
+        
 
         public IActionResult Registration()
         {

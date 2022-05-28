@@ -17,6 +17,18 @@ namespace project_Zahar_home.Controllers
             _dishManager = manager;
             _ratingManager = ratingManager;
         }
+        public IActionResult Inf_dish(int id)
+        {
+            foreach (var dish in rvm)
+            {
+                if (dish.Key.Dish_Id == id)
+                {
+                    ViewBag.Dish = dish;
+                    return View();
+                }
+            }
+            return RedirectToAction("Index");
+        }
         public async Task<IActionResult> Index()
         {
             if (rvm == null)

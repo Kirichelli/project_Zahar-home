@@ -4,13 +4,15 @@
     <section class="catalog">
         <div class="catalog__container container">
             <div class="catalog__head head-catalog">
+                    <form asp-controller="Recipes" asp-action = "Filter">
                 <div class="head-catalog__filter">
                     <button >по популярности</button>
-                    <button >по рейтингу</button>
+                    <button name="ratingOrder">по рейтингу</button>
                     <button>по кол-ву ингридиентов</button>
-                    <button>по сложности</button>
-                    <button>по названию</button>
+                    <button name="level">по сложности</button>
+                    <button name="typeName">по названию</button>
                 </div>
+                   </form>
                 <div class="head-catalog__search">
                     <form asp-controller="Recipes" asp-action = "Search" class="search-form">
                         <button class="input" type="submit" value="" id="subscribe_form" name="submit"></button>
@@ -26,7 +28,7 @@
                         {*@
                             @foreach (var item in ViewBag.rvm)
                             {
-                                <a href="/Home/Inf_dish" class="body-catalog-menu__item item-catalog">
+                                <a asp-action="Inf_dish" asp-route-id="@item.Key.Dish_Id" class="body-catalog-menu__item item-catalog">
                                     <div class="item-catalog__image">
                                         <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
                                     </div>

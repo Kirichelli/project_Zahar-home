@@ -1,7 +1,7 @@
 ﻿@model project_Zahar_home.Models.LoginModel
-         <section class="registration">
-            <div class="registration__container container">
-               <div class="registration__content content-registration">
+         <section class="personal account">
+            <div class="personal account__container container">
+               <div class="personal account__content content-personal account">
                   <h2 class="dish__title">Аккаунт</h2>
                                     <div>Доброе утро,
                     @if (Context.User.Identity.AuthenticationType == "admin")
@@ -27,11 +27,11 @@
                         </div>
                      </div>
                   </form>
-               <div class="registration__decor decor-registration">
+@*               <div class="registration__decor decor-registration">
                   <div class="decor-registration__image image-decor">
                      <picture><source srcset="img/content/reg.webp" type="image/webp"><img src="img/content/reg.png" alt="reg"></picture>
                   </div>
-               </div>
+               </div>*@
             </div>
                   <a asp-action="Logout" asp-controller="Account" class="input button-reg" type="submit" name="submit">Выйти из аккаунта</a>
             </div>

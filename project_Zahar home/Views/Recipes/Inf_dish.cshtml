@@ -16,7 +16,7 @@
                      </button>
                   </div>
                   <div class="content-dish__image image-dish">
-                     <h2 class="dish__title">Самая лучшая Лазанья</h2>
+                     <h2 class="dish__title">@ViewBag.Dish.Key.Name_Dish</h2>
                      <div class="image-dish__main">
                         <picture><source srcset="~/img/content/dish-main.webp" type="image/webp"><img src="img/content/dish-main.png" alt="dish-main"></picture>
                      </div>
@@ -36,7 +36,7 @@
                      </div>
                   </div>
                   <div class="content-dish__info info-dish">
-                     <p>Время готовки: @ViewBag.Dish.Cook_Time</p>
+                     <p>Время готовки: @ViewBag.Dish.Key.Cook_Time</p>
                      <p>Кол-во порций: 12</p>
                      <p>Сложность: низкая</p>
                   </div>
