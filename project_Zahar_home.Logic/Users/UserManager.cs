@@ -28,7 +28,7 @@ namespace project_Zahar_home.Logic.Users
         public async Task Delete(int id)
         {
             var user = _recipeContext.Users.FirstOrDefault(u => u.User_Id == id);
-            if (user == null)
+            if (user != null)
             {
                 _recipeContext.Users.Remove(user);
                 await _recipeContext.SaveChangesAsync();
