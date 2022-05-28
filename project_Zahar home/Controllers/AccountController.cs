@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using project_Zahar_home.Logic.Dishes;
 using project_Zahar_home.Logic.Users;
+using project_Zahar_home.Logic.Ratings;
 using project_Zahar_home.Models;
 using project_Zahar_home.Storage.Entities;
-using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 
@@ -12,10 +13,15 @@ namespace project_Zahar_home.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IUserManager _manager;
-        public AccountController(IUserManager manager)
+        private readonly IUserManager _userManager;
+        private readonly IDishManager _dishManager;
+        private readonly IRatingManager _ratingManager;
+        private static Dictionary<Dish, Rating> rvm;
+        public AccountController(IUserManager manager, IRatingManager ratingManager, IDishManager dishManager)
         {
-            _manager = manager;
+            _userManager = manager;
+            _ratingManager = ratingManager; 
+            _dishManager = dishManager;
         }
         [HttpGet]
         public IActionResult Register()
@@ -30,12 +36,12 @@ namespace project_Zahar_home.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _manager.getUser(model.Email);
+                var user = await _userManager.getUser(model.Email);
                 if (user == null)
                 {
                     // добавляем пользователя в бд
                     user = new User { Email = model.Email, Password = model.Password };
-                    await _manager.Add(user);
+                    await _userManager.Add(user);
 
                     await Authenticate(user); // аутентификация
 
@@ -57,7 +63,7 @@ namespace project_Zahar_home.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _manager.getUserWithRole(model.Email, model.Password);
+                var user = await _userManager.getUserWithRole(model.Email, model.Password);
                 if (user != null)
                 {
                     await Authenticate(user);// аутентификация
@@ -91,6 +97,48 @@ namespace project_Zahar_home.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateDish(Dish dish)
+        {
+            _dishManager.Create(dish);
+            return RedirectToAction("Dishes");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteDish(int id)
+        {
+            _dishManager.Delete(id);
+            return RedirectToAction("Dishes");
+        }
+
+        public async Task<IActionResult> Dishes()
+        {
+            rvm = new Dictionary<Dish, Rating>();
+            var dishes = await _dishManager.GetAll();
+            foreach (var dish in dishes)
+            {
+                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+            }
+            ViewBag.rvm = rvm;
+            return View();
+        }
+
+        public async Task<IActionResult> Users()
+        {
+            ViewBag.uvm = await _userManager.GetAll();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteUser(int id)
+        {
+            _userManager.Delete(id);
+            return RedirectToAction("Users");
         }
     }
 }
