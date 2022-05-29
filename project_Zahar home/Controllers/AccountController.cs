@@ -179,9 +179,9 @@ namespace project_Zahar_home.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteCooked(int dishId)
+        public ActionResult DeleteCooked(int ratingId)
         {
-            _favouriteManager.Delete(dishId, HttpContext.User.Identity.Name);
+            _favouriteManager.Delete(ratingId, HttpContext.User.Identity.Name);
             return RedirectToAction("cookedDishes");
         }
 

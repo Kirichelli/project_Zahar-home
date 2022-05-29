@@ -8,7 +8,6 @@ namespace project_Zahar_home.Logic.Cooked
 {
     public interface ICookedManagercs
     {
-        void Add(int dishId, string Email);
         Task Delete(int dishId, string Email);
         IList<Dish> GetAll(string Email);
     }

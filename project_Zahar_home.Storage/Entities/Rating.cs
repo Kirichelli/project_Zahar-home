@@ -4,11 +4,11 @@
     {
         [Key]
         public int Rating_Id { get; set; }
-        public virtual List<User> Users { get; set; }
-        public Rating()
-        {
-            Users = new List<User>();
-        }
+        //public virtual List<User> Users { get; set; }
+        //public Rating()
+        //{
+        //    Users = new List<User>();
+        //}
         public double Rating_Value { get; set; }
         //[Required]
         //public int User_Id { get; set; }

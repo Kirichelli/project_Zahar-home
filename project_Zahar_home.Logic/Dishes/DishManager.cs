@@ -14,16 +14,20 @@ namespace project_Zahar_home.Logic.Dishes
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.Equals(userEmail));
             var rate = await _context.Ratings.FirstOrDefaultAsync(r => r.Rating_Id == id);
-            foreach(var u in rate.Users)
+            int count = 1;
+            double value = rating;
+            foreach (var item in _context.UserRatings.ToList())
             {
-                if (u.Email.Equals(userEmail))
+                if (item.Rating_Id == rate.Rating_Id)
                 {
-                    return;
+                    count++;
+                    value += item.Rating_Value;
                 }
             }
-            double value = rate.Rating_Value * rate.Users.Count;
-            rate.Users.Add(user);
-            rate.Rating_Value = (value + rating)/rate.Users.Count;
+            rate.Rating_Value = value / count;
+            var userRating = new UserRating { Rating_Value = rating, Rating_Id = rate.Rating_Id, User_Id = user.User_Id };
+            _context.UserRatings.Add(userRating);
+            _context.Cooked.Add(new Storage.Entities.Cooked { UserRating_Id = userRating.UserRating_Id});
             await _context.SaveChangesAsync();
         }
 
@@ -35,12 +39,17 @@ namespace project_Zahar_home.Logic.Dishes
 
         public async Task Delete(int id)
         {
-            var dish = _context.Dishes.FirstOrDefault(d => d.Dish_Id == id);
-            if (dish != null)
+            var rating = _context.Ratings.FirstOrDefault(r => r.Dish_Id == id);
+            if (rating != null)
             {
-                _context.Dishes.Remove(dish);
-                await _context.SaveChangesAsync();
+                _context.Ratings.Remove(rating);
             }
+            var cooked = _context.Cooked.FirstOrDefault(c => c.UserRating.Rating.Dish_Id == id);
+            if (cooked != null)
+            {
+                _context.Cooked.Remove(cooked);
+            }
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IList<Dish>> GetAll() => await _context.Dishes.ToListAsync();
