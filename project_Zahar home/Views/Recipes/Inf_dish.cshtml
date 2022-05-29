@@ -1,5 +1,8 @@
 ﻿@*@model IList<project_Zahar_home.Models.RecipeViewModel>*@
-    @page
+@page
+    @{
+        var count = 1;
+    }
       <main>
          <section class="dish">
             <div class="dish__container container">
@@ -38,95 +41,37 @@
                   <div class="content-dish__info info-dish">
                      <p>Время готовки: @ViewBag.Dish.Key.Cook_Time</p>
                      <p>Кол-во порций: 12</p>
-                     <p>Сложность: низкая</p>
+                     <p>Сложность: @ViewBag.Dish.Key.Level</p>
                   </div>
                </div>
                <div class="dish__products products-dish">
                   <h3 class="products-dish__title title-dish">Ингридиенты</h3>
                   <ul class="products-dish__list">
-                     <li>Фарш</li>
-                     <li>Сыр Пармезан</li>
-                     <li>Томаты</li>
+                      @foreach (var item in ViewBag.Dish.Key.Ingredients.Split(','))
+                      {
+                     <li>@item</li>
+                      }
                   </ul>
                </div>
                <div class="dish__process process-dish">
                   <h3 class="process-dish__title title-dish">Инструкция приготовления</h3>
                   <div class="process-dish__content content-process">
+                                            @foreach (var item in ViewBag.Dish.Key.Discription.Split(';'))
+                      {
+                          
                      <div class="content-process__step step-process">
                         <div class="step-process__info info-step">
-                           <span class="info-step__count"></span>
-                           <div class="info-step__text">В жаровне обжарьте колбасу, говяжий фарш, лук и чеснок на
-                              среднем огне, пока они хорошо не подрумянятся. Добавьте измельченные помидоры, томатную
-                              пасту, томатный соус и воду. Приправьте сахаром, базиликом, семенами фенхеля,
-                              итальянской
-                              приправой, 1 чайной ложкой соли, перцем и 2 столовыми ложками петрушки. Варить под
-                              крышкой
-                              около 1 1/2 часа, время от времени помешивая.</div>
+                           <span class="info-step__count">Шаг @(count++)</span>
+                           <div class="info-step__text">
+                               @item
+                               </div>
                         </div>
                         <div class="step-process__image">
                            <picture><source srcset="~/img/content/dish-other.webp" type="image/webp"><img src="img/content/dish-other.png" alt="dish-other"></picture>
                         </div>
+                    
                      </div>
-                     <div class="content-process__step step-process">
-                        <div class="step-process__info info-step">
-                           <span class="info-step__count"></span>
-                           <div class="info-step__text">В жаровне обжарьте колбасу, говяжий фарш, лук и чеснок на
-                              среднем огне, пока они хорошо не подрумянятся. Добавьте измельченные помидоры, томатную
-                              пасту, томатный соус и воду. Приправьте сахаром, базиликом, семенами фенхеля,
-                              итальянской
-                              приправой, 1 чайной ложкой соли, перцем и 2 столовыми ложками петрушки. Варить под
-                              крышкой
-                              около 1 1/2 часа, время от времени помешивая.</div>
-                        </div>
-                        <div class="step-process__image">
-                           <picture><source srcset="~/img/content/dish-other.webp" type="image/webp"><img src="img/content/dish-other.png" alt="dish-other"></picture>
-                        </div>
-                     </div>
-                     <div class="content-process__step step-process">
-                        <div class="step-process__info info-step">
-                           <span class="info-step__count"></span>
-                           <div class="info-step__text">В жаровне обжарьте колбасу, говяжий фарш, лук и чеснок на
-                              среднем огне, пока они хорошо не подрумянятся. Добавьте измельченные помидоры, томатную
-                              пасту, томатный соус и воду. Приправьте сахаром, базиликом, семенами фенхеля,
-                              итальянской
-                              приправой, 1 чайной ложкой соли, перцем и 2 столовыми ложками петрушки. Варить под
-                              крышкой
-                              около 1 1/2 часа, время от времени помешивая.</div>
-                        </div>
-                        <div class="step-process__image">
-                           <picture><source srcset="~/img/content/dish-other.webp" type="image/webp"><img src="img/content/dish-other.png" alt="dish-other"></picture>
-                        </div>
-                     </div>
-                     <div class="content-process__step step-process">
-                        <div class="step-process__info info-step">
-                           <span class="info-step__count"></span>
-                           <div class="info-step__text">В жаровне обжарьте колбасу, говяжий фарш, лук и чеснок на
-                              среднем огне, пока они хорошо не подрумянятся. Добавьте измельченные помидоры, томатную
-                              пасту, томатный соус и воду. Приправьте сахаром, базиликом, семенами фенхеля,
-                              итальянской
-                              приправой, 1 чайной ложкой соли, перцем и 2 столовыми ложками петрушки. Варить под
-                              крышкой
-                              около 1 1/2 часа, время от времени помешивая.</div>
-                        </div>
-                        <div class="step-process__image">
-                           <picture><source srcset="~/img/content/dish-other.webp" type="image/webp"><img src="img/content/dish-other.png" alt="dish-other"></picture>
-                        </div>
-                     </div>
-                     <div class="content-process__step step-process">
-                        <div class="step-process__info info-step">
-                           <span class="info-step__count"></span>
-                           <div class="info-step__text">В жаровне обжарьте колбасу, говяжий фарш, лук и чеснок на
-                              среднем огне, пока они хорошо не подрумянятся. Добавьте измельченные помидоры, томатную
-                              пасту, томатный соус и воду. Приправьте сахаром, базиликом, семенами фенхеля,
-                              итальянской
-                              приправой, 1 чайной ложкой соли, перцем и 2 столовыми ложками петрушки. Варить под
-                              крышкой
-                              около 1 1/2 часа, время от времени помешивая.</div>
-                        </div>
-                        <div class="step-process__image">
-                           <picture><source srcset="~/img/content/dish-other.webp" type="image/webp"><img src="img/content/dish-other.png" alt="dish-other"></picture>
-                        </div>
-                     </div>
+                     }    
                   </div>
                </div>
                <div class="dish__button button-dish">
@@ -135,10 +80,10 @@
                </div>
                <div class="dish__bju bju-dish">
                   <h3 class="bju-dish__title title-dish">Пищевая ценность</h3>
-                  <div class="bju-dish__kal">448 кал</div>
-                  <div class="bju-dish__b">29,7 г</div>
-                  <div class="bju-dish__j">36,5г</div>
-                  <div class="bju-dish__u">21,3 г</div>
+                  <div class="bju-dish__kal">@ViewBag.Dish.Key.Callories кал</div>
+                  <div class="bju-dish__b">@ViewBag.Dish.Key.Protein г</div>
+                  <div class="bju-dish__j">@ViewBag.Dish.Key.Fat г</div>
+                  <div class="bju-dish__u">@ViewBag.Dish.Key.Carbohydrat г</div>
                </div>
             </div>
          </section>

@@ -33,14 +33,9 @@ namespace project_Zahar_home.Storage.Migrations
                     b.Property<int>("Favourite_Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("User_Id")
-                        .HasColumnType("int");
-
                     b.HasKey("Cooked_Id");
 
                     b.HasIndex("Favourite_Id");
-
-                    b.HasIndex("User_Id");
 
                     b.ToTable("Cooked");
                 });
@@ -57,9 +52,6 @@ namespace project_Zahar_home.Storage.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Carbohydrat")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Category_id")
                         .HasColumnType("int");
 
                     b.Property<int>("Cook_Time")
@@ -123,6 +115,28 @@ namespace project_Zahar_home.Storage.Migrations
                     b.ToTable("Favourites");
                 });
 
+            modelBuilder.Entity("project_Zahar_home.Storage.Entities.Img", b =>
+                {
+                    b.Property<int>("Img_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Img_Id"), 1L, 1);
+
+                    b.Property<int>("Dish_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Img_Id");
+
+                    b.HasIndex("Dish_Id");
+
+                    b.ToTable("Imgs");
+                });
+
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Ingridient", b =>
                 {
                     b.Property<int>("Ingridient_Id")
@@ -137,7 +151,7 @@ namespace project_Zahar_home.Storage.Migrations
 
                     b.HasKey("Ingridient_Id");
 
-                    b.ToTable("Ingridient");
+                    b.ToTable("Ingridients");
                 });
 
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Rating", b =>
@@ -185,10 +199,6 @@ namespace project_Zahar_home.Storage.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Type_Id"), 1L, 1);
-
-                    b.Property<string>("Ingridient_Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Ingridient_id")
                         .HasColumnType("int");
@@ -249,15 +259,7 @@ namespace project_Zahar_home.Storage.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("project_Zahar_home.Storage.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("User_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Favourite");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Dish", b =>
@@ -277,6 +279,17 @@ namespace project_Zahar_home.Storage.Migrations
                         .IsRequired();
 
                     b.Navigation("Type_Of_Kitchen");
+                });
+
+            modelBuilder.Entity("project_Zahar_home.Storage.Entities.Img", b =>
+                {
+                    b.HasOne("project_Zahar_home.Storage.Entities.Dish", "Dish")
+                        .WithMany()
+                        .HasForeignKey("Dish_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dish");
                 });
 
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Rating", b =>

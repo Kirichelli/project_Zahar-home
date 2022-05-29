@@ -9,9 +9,9 @@ public class Cooked
 {
     [Key]
     public int Cooked_Id { get; set; }
-    public int User_Id { get; set; }
-    [ForeignKey(nameof(User_Id))]
-    public virtual User User { get; set; }
+/*    public int User_Id { get; set; }
+    [ForeignKey(nameof(User_Id))]*/
+/*    public virtual User User { get; set; }*/
     public  virtual List<Dish> cookedDishes { get; set; }
     public  Cooked()
     {

@@ -30,10 +30,16 @@
                             {
                                 <a asp-action="Inf_dish" asp-route-id="@item.Key.Dish_Id" class="body-catalog-menu__item item-catalog">
                                     <div class="item-catalog__image">
-                                        <picture><source srcset="~/img/content/salad.webp" type="image/webp"><img src="img/content/salad.png" alt="salad"></picture>
+                                        @foreach (var image in ViewBag.Image)
+                                        {
+                                        if (image.Dish_Id == item.Key.Dish_Id)
+                                        {
+                                        <img src="@image.Url" alt="dish">
+                                        }
+                                        }
                                     </div>
                                     <div class="item-catalog__info info-catalog">
-                                        <div class="item-popular__star">@item.Value.Rating_Id</div>
+                                        <div class="item-popular__star">@item.Value.Rating_Value</div>
                                         <button class="info-catalog__like"></button>
                                     </div>
                                     <div class="item-catalog__name">@item.Key.Name_Dish</div>

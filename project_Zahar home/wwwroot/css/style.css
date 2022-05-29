@@ -1814,9 +1814,9 @@ main .info-step .info-step__count::before {
   content: url(../img/content/yes.png);
 }
 
-main .info-step .info-step__count::after {
+/*main .info-step .info-step__count::after {
   content: "Шаг " counter(step);
-}
+}*/
 
 main .info-step .info-step__text {
   font-weight: 700;

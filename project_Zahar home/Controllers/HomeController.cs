@@ -41,8 +41,6 @@ namespace project_Zahar_home.Controllers
             return View();
         }
 
-        
-
         public IActionResult Registration()
         {
             return View();

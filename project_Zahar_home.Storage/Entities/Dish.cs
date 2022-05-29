@@ -13,7 +13,7 @@
         public int Fat { get; set; }
         public int Cook_Time { get; set; }
         public string Level { get; set; }
-        public int Category_id { get; set; }
+/*        public int Category_id { get; set; }*/
         public int Rating_Id { get; set; }
 /*        [ForeignKey(nameof(Rating_Id))]
         public virtual Rating Rating { get; set; }*/

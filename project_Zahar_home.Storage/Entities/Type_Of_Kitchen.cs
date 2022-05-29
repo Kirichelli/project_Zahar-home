@@ -11,7 +11,7 @@ namespace project_Zahar_home.Storage.Entities
         [Key]
         public int Type_Id { get; set; }
         public string Type_Name { get; set; }
-        public string Ingridient_Name { get; set; }
+/*        public string Ingridient_Name { get; set; }*/
         public int Ingridient_id { get; set; }
 
         [ForeignKey(nameof(Ingridient_id))]
