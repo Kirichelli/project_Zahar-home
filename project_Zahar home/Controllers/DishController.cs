@@ -3,8 +3,6 @@ using project_Zahar_home.Logic.Cooked;
 using project_Zahar_home.Logic.Dishes;
 using project_Zahar_home.Logic.Favourites;
 using project_Zahar_home.Logic.Ratings;
-using project_Zahar_home.Models;
-using project_Zahar_home.Storage.Entities;
 
 namespace project_Zahar_home.Controllers
 {
@@ -24,7 +22,7 @@ namespace project_Zahar_home.Controllers
         public async Task<IActionResult> Index(int dishId)
         {
             var dish = await _dishManager.getDish(dishId);
-            var rating = await _ratingManager.GetDishRating(dish.Rating_Id);
+            var rating = await _ratingManager.GetDishRating(dish.Dish_Id);
             ViewBag.dish = dish;
             ViewBag.rating = rating;
             return View();
@@ -33,12 +31,6 @@ namespace project_Zahar_home.Controllers
         public async Task<IActionResult> ratingChange(int rating)
         {
             await _dishManager.changeRating(ViewBag.rating.Rating_Id, rating, HttpContext.User.Identity.Name);
-            return RedirectToAction("Index");
-        }
-
-        public async Task<IActionResult> AddToCooked()
-        {
-            _cookedManager.Add(ViewBag.dish.Dish_Id, HttpContext.User.Identity.Name);
             return RedirectToAction("Index");
         }
 

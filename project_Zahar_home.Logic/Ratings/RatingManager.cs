@@ -15,7 +15,7 @@ namespace project_Zahar_home.Logic.Ratings
             _context = context;
         }
 
-        public async Task<Rating> GetDishRating(int RatingId) => await _context.Ratings.FirstOrDefaultAsync(r => r.Rating_Id == RatingId);
+        public async Task<Rating> GetDishRating(int dishId) => await _context.Ratings.FirstOrDefaultAsync(r => r.Dish_Id == dishId);
 
         public async Task<IList<Rating>> GetRatings() => await _context.Ratings.ToListAsync();
 

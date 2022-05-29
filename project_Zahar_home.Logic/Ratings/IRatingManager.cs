@@ -9,7 +9,7 @@ namespace project_Zahar_home.Logic.Ratings
     public interface IRatingManager
     {
         Task<IList<Rating>> GetRatings();
-        Task<Rating> GetDishRating(int RatingId);
+        Task<Rating> GetDishRating(int dishId);
         IList<Rating> Sort(List<Rating> ratings, int? orderBy);
     }
 }

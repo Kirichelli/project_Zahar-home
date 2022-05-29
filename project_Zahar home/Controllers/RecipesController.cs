@@ -41,7 +41,7 @@ namespace project_Zahar_home.Controllers
                 var dishes = await _dishManager.GetAll();
                 foreach (var dish in dishes)
                 {
-                    rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+                    rvm.Add(dish, await _ratingManager.GetDishRating(dish.Dish_Id));
                 }
                 image = await _imgManager.GetAll();
             }
@@ -56,7 +56,7 @@ namespace project_Zahar_home.Controllers
             var dishes = await _dishManager.nameFilter(searchString);
             foreach (var dish in dishes)
             {
-                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Dish_Id));
             }
             ViewBag.rvm = rvm;
             return RedirectToAction("Index");
@@ -65,12 +65,6 @@ namespace project_Zahar_home.Controllers
         [HttpPost]
         public async Task<IActionResult> FilterAsync(string? level, int? calloriesMin, int? calloriesMax, int? proteinMin, int? proteinMax, int? carbohydratMin, int? carbohydratMax, int? fatMin, int? fatMax, int? ratingOrder, string? typeName)
         {
-            rvm = new Dictionary<Dish, Rating>();
-            var dishess = await _dishManager.GetAll();
-            foreach (var dish in dishess)
-            {
-                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
-            }
             IList<Dish> dishes = _dishManager.GetDishesByProperties(rvm.Keys.ToList(), level, calloriesMin, calloriesMax, proteinMin, proteinMax, carbohydratMin, carbohydratMax, fatMin, fatMax, typeName);
             var ratings = _ratingManager.Sort(rvm.Values.ToList(), ratingOrder);
             rvm = new Dictionary<Dish, Rating>();
@@ -78,7 +72,7 @@ namespace project_Zahar_home.Controllers
             {
                 foreach(var dish in dishes)
                 {
-                    if (dish.Rating_Id == r.Rating_Id)
+                    if (dish.Dish_Id == r.Dish_Id)
                     {
                         rvm.TryAdd(dish,r);
                     }

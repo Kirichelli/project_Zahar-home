@@ -125,7 +125,7 @@ namespace project_Zahar_home.Controllers
             var dishes = await _dishManager.GetAll();
             foreach (var dish in dishes)
             {
-                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Dish_Id));
             }
             ViewBag.rvm = rvm;
             return View();
@@ -151,7 +151,7 @@ namespace project_Zahar_home.Controllers
             var dishes = _cookedManager.GetAll(HttpContext.User.Identity.Name);
             foreach (var dish in dishes)
             {
-                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Dish_Id));
             }
             ViewBag.rvm = rvm;
             return View();
@@ -163,7 +163,7 @@ namespace project_Zahar_home.Controllers
             var dishes = _favouriteManager.GetAll(HttpContext.User.Identity.Name);
             foreach (var dish in dishes)
             {
-                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Dish_Id));
             }
             ViewBag.rvm = rvm;
             return View();
