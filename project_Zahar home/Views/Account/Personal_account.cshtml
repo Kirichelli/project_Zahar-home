@@ -1,50 +1,56 @@
-﻿@model project_Zahar_home.Models.LoginModel
-         <section class="personal account">
-            <div class="personal account__container container">
-               <div class="personal account__content content-personal account">
-                  <h2 class="dish__title">Аккаунт</h2>
-                                    <div>Доброе утро,
-                    @if (Context.User.Identity.AuthenticationType == "admin")
-                    {
-                        <div>Администратор</div>
-                    }
-                    else
-                    {
-                        <div>Пользователь</div>
-                    }
-                </div>
-                  <form class="form-reg">
-                     <div class="content-registration__block block-registration">
-                        <div class="block-registration__name">Имя пользователя</div>
-                        <div class="block-registration__place">
-                       Context.User.Identity.Name
-                        </div>
+﻿@model project_Zahar_home.Models.LoginModel                                                                                                                                                                                 
+@{
+ViewData["Title"] = "Account";
+}
+    <section class="account">
+            <div class="account__container container">
+               <div class="account__control control-account">
+                  <button class="control-account__button">
+                     <img src="/img/content/information.png" alt="info">
+                  </button>
+                  <button class="control-account__button">
+                     <img src="/img/content/lover.png" alt="favorite">
+                  </button>
+                  <button class="control-account__button">
+                     <img src="/img/content/breakfast.png" alt="huetakakayato">
+                  </button>
+                  <button class="control-account__button">
+                     <img src="/img/content/settings.png" alt="settings">
+                  </button>
+               </div>
+               <div class="account__info info-account">
+                  <div class="slider-account">
+                     <div class="slider-account__item item-account">
+               <div class="account__photo photo-account">
+                  <div class="photo-account__image">
+                @*@if (Model.Photo != null)
+                {
+                    <img src="@Model.Photo" alt="Photo">
+                }
+                else
+                {
+                    <img src="no-photo.png" alt="Photo"> // Вывод "нет фото", если фотки нет
+                }*@
+            </div>
+                  <button class="photo-account__change">Изменить фото</button>
+               </div>
                      </div>
-                     <div class="content-registration__block block-registration">
-                        <div class="block-registration__name">Электронная почта</div>
-                        <div class="block-registration__place">
-                           <input class="email place-form" type="text" name="email" placeholder="E-Mail">
-                        </div>
-                     </div>
-                  </form>
-@*               <div class="registration__decor decor-registration">
-                  <div class="decor-registration__image image-decor">
-                     <picture><source srcset="img/content/reg.webp" type="image/webp"><img src="img/content/reg.png" alt="reg"></picture>
-                  </div>
-               </div>*@
-                           </div>
-                  <a asp-action="FavouriteDishes" asp-controller="Account" class="input button-reg" type="submit" name="submit">Избранное</a>
-            </div>
-                        </div>
-                  <a asp-action="cookedDishes" asp-controller="Account" class="input button-reg" type="submit" name="submit">Уже приготовленное</a>
-            </div>
-            </div>
+                     <div class="slider-account__item item-account">
+                                    </div>
                   <a asp-action="Logout" asp-controller="Account" class="input button-reg" type="submit" name="submit">Выйти из аккаунта</a>
             </div>
                         </div>
                   <a href="/Account/Users" class="input button-reg" type="submit" name="submit">Управление пользователями</a>
             </div>
+                     </div>
+                     <div class="slider-account__item item-account">
+                                                 </div>
+                  <a href="/Account/Users" class="input button-reg" type="submit" name="submit">Управление пользователями</a>
+            </div>
+                     </div>
+                     <div class="slider-account__item item-account">
+                     </div>
+                  </div>
+               </div>
+            </div>
          </section>
-
-
-

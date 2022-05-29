@@ -863,21 +863,6 @@ body.lock {
   margin: 0 auto;
   margin-bottom: 40px;
 }
-.input {
-    font-weight: 700;
-    text-align: center;
-    font-size: 12px;
-    display: block;
-    cursor: pointer;
-    width: 100%;
-    line-height: 18px;
-    color: #FFFFFF;
-    padding: 10px;
-    background: #F35D5D;
-    border-radius: 5px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-}
 
 .header {
   background: #FBA97B;
@@ -1814,9 +1799,9 @@ main .info-step .info-step__count::before {
   content: url(../img/content/yes.png);
 }
 
-/*main .info-step .info-step__count::after {
+main .info-step .info-step__count::after {
   content: "Шаг " counter(step);
-}*/
+}
 
 main .info-step .info-step__text {
   font-weight: 700;
@@ -2012,6 +1997,141 @@ main .content-registration__enter {
 main .content-registration__enter a {
   color: #EB2929;
 }
+
+    main .account {
+        padding: 100px 0;
+    }
+
+    main .account__container {
+        display: flex;
+        align-items: start;
+        gap: 20px;
+        justify-content: space-between;
+    }
+
+        main .account__container .account__control {
+            flex: 0 0 30%;
+        }
+        main .account__container .account__info {
+            flex: 0 0 70%;
+        }
+
+.slider-account {
+    position: relative;
+}
+
+    .slider-account .slick-list {
+        overflow: hidden;
+    }
+
+    .slider-account .slick-track {
+        display: block;
+    }
+
+    .slider-account .slick-slide {
+        transition: all 0.3s;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+        .slider-account .slick-slide.slick-center {
+            opacity: 1;
+            visibility: visible;
+        }
+
+    .slider-account .slick-dots {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px;
+        background: #F3C895;
+        border-radius: 26px;
+        width: -webkit-max-content;
+        width: -moz-max-content;
+        width: max-content;
+    }
+
+        .slider-account .slick-dots li {
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid #FFFFFF;
+            width: 20px;
+            height: 20px;
+        }
+
+            .slider-account .slick-dots li.slick-active {
+                opacity: 1;
+                background: #fff;
+                transform: scale(1.35);
+                margin: 0 5px;
+            }
+
+        .slider-account .slick-dots button {
+            font-size: 0;
+        }
+
+    main .control-account {
+        background: #FBA97B;
+        border-radius: 15px;
+        height: 551px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+        main .control-account .control-account__button {
+            flex: 1 1 auto;
+            display: flex;
+            min-width: 100%;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+        main .control-account .control-account__button img {
+            width: 50px;
+            height: 50px;
+        }
+            main .control-account .control-account__button:hover {
+                background: rgba(72, 90, 145, 0.89);
+            }
+
+    main .info-account {
+        text-align: center;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 170%;
+    }
+
+    main .photo-account .photo-account__image {
+        position: relative;
+        height: 500px;
+        overflow: hidden;
+        border-radius: 15px;
+    }
+
+        main .photo-account .photo-account__image img {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+    main .photo-account .photo-account__change {
+        text-align: center;
+        background: transparent;
+        padding: 15px;
+        margin: 0 auto;
+        display: block;
+    }
 
 .footer {
   background: #FFDDB5;
