@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using project_Zahar_home.Logic.Cooked;
 using project_Zahar_home.Logic.Dishes;
-using project_Zahar_home.Logic.Favourites;
 using project_Zahar_home.Logic.Ratings;
 
 namespace project_Zahar_home.Controllers
@@ -11,7 +10,6 @@ namespace project_Zahar_home.Controllers
         private readonly IDishManager _dishManager;
         private readonly IRatingManager _ratingManager;
         private readonly ICookedManagercs _cookedManager;
-        private readonly IFavouriteManager _favouriteManager;
         /*private RecipeViewModel rvm;*/
         public DishController(IDishManager manager, IRatingManager ratingManager)
         {
@@ -34,10 +32,5 @@ namespace project_Zahar_home.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> AddToFavourite()
-        {
-            _favouriteManager.Add(ViewBag.dish.Dish_Id, HttpContext.User.Identity.Name);
-            return RedirectToAction("Index");
-        }
     }
 }

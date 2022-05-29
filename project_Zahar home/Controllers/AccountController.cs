@@ -8,7 +8,6 @@ using project_Zahar_home.Models;
 using project_Zahar_home.Storage.Entities;
 using System.Security.Claims;
 using project_Zahar_home.Logic.Cooked;
-using project_Zahar_home.Logic.Favourites;
 
 namespace project_Zahar_home.Controllers
 {
@@ -18,7 +17,6 @@ namespace project_Zahar_home.Controllers
         private readonly IDishManager _dishManager;
         private readonly IRatingManager _ratingManager;
         private readonly ICookedManagercs _cookedManager;
-        private readonly IFavouriteManager _favouriteManager;
         private static Dictionary<Dish, Rating> rvm;
         public AccountController(IUserManager manager, IRatingManager ratingManager, IDishManager dishManager)
         {
@@ -157,31 +155,11 @@ namespace project_Zahar_home.Controllers
             return View();
         }
 
-        public async Task<IActionResult> FavouriteDishes()
-        {
-            rvm = new Dictionary<Dish, Rating>();
-            var dishes = _favouriteManager.GetAll(HttpContext.User.Identity.Name);
-            foreach (var dish in dishes)
-            {
-                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Dish_Id));
-            }
-            ViewBag.rvm = rvm;
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteFavourite(int dishId)
-        {
-            _favouriteManager.Delete(dishId, HttpContext.User.Identity.Name);
-            return RedirectToAction("FavouriteDishes");
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteCooked(int ratingId)
         {
-            _favouriteManager.Delete(ratingId, HttpContext.User.Identity.Name);
+            _cookedManager.Delete(ratingId, HttpContext.User.Identity.Name);
             return RedirectToAction("cookedDishes");
         }
 
