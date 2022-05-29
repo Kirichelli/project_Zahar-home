@@ -218,13 +218,13 @@ namespace project_Zahar_home.Storage.Migrations
                         column: x => x.Rating_Id,
                         principalTable: "Ratings",
                         principalColumn: "Rating_Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_UserRatings_Users_User_Id",
                         column: x => x.User_Id,
                         principalTable: "Users",
                         principalColumn: "User_Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
