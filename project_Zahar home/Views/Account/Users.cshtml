@@ -1,0 +1,14 @@
+﻿@page
+
+@foreach (var us in ViewBag.uvm)
+{
+    <tr>
+        <td>@us.Email</td> 
+        <td>
+            <a asp-action="Delete" asp-controller="Account" asp-route-id="@us.User_Id" class="input button-reg" type="submit" name="submit">
+                Удалить
+            </a>
+        </td>
+    </tr>
+    
+}

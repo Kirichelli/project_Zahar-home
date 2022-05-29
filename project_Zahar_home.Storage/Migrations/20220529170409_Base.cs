@@ -47,25 +47,6 @@ namespace project_Zahar_home.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cooked",
-                columns: table => new
-                {
-                    Cooked_Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Favourite_Id = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cooked", x => x.Cooked_Id);
-                    table.ForeignKey(
-                        name: "FK_Cooked_Favourites_Favourite_Id",
-                        column: x => x.Favourite_Id,
-                        principalTable: "Favourites",
-                        principalColumn: "Favourite_Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Type_Of_Kitchens",
                 columns: table => new
                 {
@@ -82,6 +63,26 @@ namespace project_Zahar_home.Storage.Migrations
                         column: x => x.Ingridient_id,
                         principalTable: "Ingridients",
                         principalColumn: "Ingridient_Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cooked",
+                columns: table => new
+                {
+                    Cooked_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Favourite_Id = table.Column<int>(type: "int", nullable: false),
+                    UserRating_Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cooked", x => x.Cooked_Id);
+                    table.ForeignKey(
+                        name: "FK_Cooked_Favourites_Favourite_Id",
+                        column: x => x.Favourite_Id,
+                        principalTable: "Favourites",
+                        principalColumn: "Favourite_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -199,10 +200,42 @@ namespace project_Zahar_home.Storage.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "UserRatings",
+                columns: table => new
+                {
+                    UserRating_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    User_Id = table.Column<int>(type: "int", nullable: false),
+                    Rating_Id = table.Column<int>(type: "int", nullable: false),
+                    Rating_Value = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserRatings", x => x.UserRating_Id);
+                    table.ForeignKey(
+                        name: "FK_UserRatings_Ratings_Rating_Id",
+                        column: x => x.Rating_Id,
+                        principalTable: "Ratings",
+                        principalColumn: "Rating_Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserRatings_Users_User_Id",
+                        column: x => x.User_Id,
+                        principalTable: "Users",
+                        principalColumn: "User_Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Cooked_Favourite_Id",
                 table: "Cooked",
                 column: "Favourite_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cooked_UserRating_Id",
+                table: "Cooked",
+                column: "UserRating_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Dishes_Cooked_Id",
@@ -235,6 +268,16 @@ namespace project_Zahar_home.Storage.Migrations
                 column: "Ingridient_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserRatings_Rating_Id",
+                table: "UserRatings",
+                column: "Rating_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRatings_User_Id",
+                table: "UserRatings",
+                column: "User_Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_Cooked_Id",
                 table: "Users",
                 column: "Cooked_Id");
@@ -248,12 +291,38 @@ namespace project_Zahar_home.Storage.Migrations
                 name: "IX_Users_RoleId",
                 table: "Users",
                 column: "RoleId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Cooked_UserRatings_UserRating_Id",
+                table: "Cooked",
+                column: "UserRating_Id",
+                principalTable: "UserRatings",
+                principalColumn: "UserRating_Id",
+                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Cooked_Favourites_Favourite_Id",
+                table: "Cooked");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Dishes_Favourites_Favourite_Id",
+                table: "Dishes");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Cooked_UserRatings_UserRating_Id",
+                table: "Cooked");
+
             migrationBuilder.DropTable(
                 name: "Imgs");
+
+            migrationBuilder.DropTable(
+                name: "Favourites");
+
+            migrationBuilder.DropTable(
+                name: "UserRatings");
 
             migrationBuilder.DropTable(
                 name: "Users");
@@ -272,9 +341,6 @@ namespace project_Zahar_home.Storage.Migrations
 
             migrationBuilder.DropTable(
                 name: "Type_Of_Kitchens");
-
-            migrationBuilder.DropTable(
-                name: "Favourites");
 
             migrationBuilder.DropTable(
                 name: "Ingridients");

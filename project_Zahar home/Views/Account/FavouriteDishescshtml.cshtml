@@ -1,0 +1,16 @@
+﻿@page
+
+@foreach (var us in ViewBag.rvm)
+{
+    <tr>
+        <td>@us.Key.Name_Dish</td>
+        <td>@us.Value.Rating_Value</td> 
+
+        <td>
+            <a asp-action="DeleteFavourite" asp-controller="Account" asp-route-id="@us.Key.Dish_Id" class="input button-reg" type="submit" name="submit">
+                Удалить
+            </a>
+        </td>
+    </tr>
+    
+}

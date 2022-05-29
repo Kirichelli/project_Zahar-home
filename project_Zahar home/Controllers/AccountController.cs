@@ -116,6 +116,7 @@ namespace project_Zahar_home.Controllers
         {
             _dishManager.Delete(id);
             return RedirectToAction("Dishes");
+
         }
 
         public async Task<IActionResult> Dishes()
@@ -133,14 +134,12 @@ namespace project_Zahar_home.Controllers
         public async Task<IActionResult> Users()
         {
             ViewBag.uvm = await _userManager.GetAll();
-            return View();
+            return View(); 
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteUser(int id)
+/*          return RedirectToAction("Users");*/
+        public async Task<IActionResult> Delete(int id)
         {
-            _userManager.Delete(id);
+            await _userManager.Delete(id);
             return RedirectToAction("Users");
         }
         #endregion

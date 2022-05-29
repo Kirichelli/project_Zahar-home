@@ -18,7 +18,7 @@ namespace project_Zahar_home.Storage
         public DbSet<Type_Of_Kitchen> Type_Of_Kitchens { get; set; }
         public DbSet<Cooked> Cooked { get; set; }
 
-
+        public DbSet<UserRating> UserRatings { get; set; }
 
     }
 }

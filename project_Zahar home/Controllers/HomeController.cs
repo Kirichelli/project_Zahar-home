@@ -23,7 +23,6 @@ namespace project_Zahar_home.Controllers
         {
             return View();
         }
-
         public IActionResult Recipes()
         {
             return View();

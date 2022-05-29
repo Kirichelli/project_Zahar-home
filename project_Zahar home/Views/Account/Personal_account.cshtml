@@ -32,8 +32,17 @@
                      <picture><source srcset="img/content/reg.webp" type="image/webp"><img src="img/content/reg.png" alt="reg"></picture>
                   </div>
                </div>*@
+                           </div>
+                  <a asp-action="FavouriteDishes" asp-controller="Account" class="input button-reg" type="submit" name="submit">Избранное</a>
+            </div>
+                        </div>
+                  <a asp-action="cookedDishes" asp-controller="Account" class="input button-reg" type="submit" name="submit">Уже приготовленное</a>
+            </div>
             </div>
                   <a asp-action="Logout" asp-controller="Account" class="input button-reg" type="submit" name="submit">Выйти из аккаунта</a>
+            </div>
+                        </div>
+                  <a href="/Account/Users" class="input button-reg" type="submit" name="submit">Управление пользователями</a>
             </div>
          </section>
 

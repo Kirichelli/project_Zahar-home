@@ -12,7 +12,7 @@ using project_Zahar_home.Storage;
 namespace project_Zahar_home.Storage.Migrations
 {
     [DbContext(typeof(RecipeContext))]
-    [Migration("20220528234034_Base")]
+    [Migration("20220529170409_Base")]
     partial class Base
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,9 +35,14 @@ namespace project_Zahar_home.Storage.Migrations
                     b.Property<int>("Favourite_Id")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserRating_Id")
+                        .HasColumnType("int");
+
                     b.HasKey("Cooked_Id");
 
                     b.HasIndex("Favourite_Id");
+
+                    b.HasIndex("UserRating_Id");
 
                     b.ToTable("Cooked");
                 });
@@ -253,6 +258,32 @@ namespace project_Zahar_home.Storage.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("project_Zahar_home.Storage.Entities.UserRating", b =>
+                {
+                    b.Property<int>("UserRating_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserRating_Id"), 1L, 1);
+
+                    b.Property<int>("Rating_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating_Value")
+                        .HasColumnType("int");
+
+                    b.Property<int>("User_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserRating_Id");
+
+                    b.HasIndex("Rating_Id");
+
+                    b.HasIndex("User_Id");
+
+                    b.ToTable("UserRatings");
+                });
+
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Cooked", b =>
                 {
                     b.HasOne("project_Zahar_home.Storage.Entities.Favourite", "Favourite")
@@ -261,7 +292,15 @@ namespace project_Zahar_home.Storage.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("project_Zahar_home.Storage.Entities.UserRating", "UserRating")
+                        .WithMany()
+                        .HasForeignKey("UserRating_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Favourite");
+
+                    b.Navigation("UserRating");
                 });
 
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Dish", b =>
@@ -327,7 +366,7 @@ namespace project_Zahar_home.Storage.Migrations
                         .HasForeignKey("Rating_Id");
 
                     b.HasOne("project_Zahar_home.Storage.Entities.Role", "Role")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -335,6 +374,25 @@ namespace project_Zahar_home.Storage.Migrations
                     b.Navigation("Cooked");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("project_Zahar_home.Storage.Entities.UserRating", b =>
+                {
+                    b.HasOne("project_Zahar_home.Storage.Entities.Rating", "Rating")
+                        .WithMany()
+                        .HasForeignKey("Rating_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("project_Zahar_home.Storage.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("User_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rating");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Cooked", b =>
@@ -348,11 +406,6 @@ namespace project_Zahar_home.Storage.Migrations
                 });
 
             modelBuilder.Entity("project_Zahar_home.Storage.Entities.Rating", b =>
-                {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("project_Zahar_home.Storage.Entities.Role", b =>
                 {
                     b.Navigation("Users");
                 });
