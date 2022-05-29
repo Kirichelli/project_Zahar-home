@@ -7,7 +7,8 @@ using project_Zahar_home.Logic.Ratings;
 using project_Zahar_home.Models;
 using project_Zahar_home.Storage.Entities;
 using System.Security.Claims;
-
+using project_Zahar_home.Logic.Cooked;
+using project_Zahar_home.Logic.Favourites;
 
 namespace project_Zahar_home.Controllers
 {
@@ -16,6 +17,8 @@ namespace project_Zahar_home.Controllers
         private readonly IUserManager _userManager;
         private readonly IDishManager _dishManager;
         private readonly IRatingManager _ratingManager;
+        private readonly ICookedManagercs _cookedManager;
+        private readonly IFavouriteManager _favouriteManager;
         private static Dictionary<Dish, Rating> rvm;
         public AccountController(IUserManager manager, IRatingManager ratingManager, IDishManager dishManager)
         {
@@ -98,7 +101,7 @@ namespace project_Zahar_home.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
-
+        #region forAdmin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateDish(Dish dish)
@@ -140,5 +143,49 @@ namespace project_Zahar_home.Controllers
             _userManager.Delete(id);
             return RedirectToAction("Users");
         }
+        #endregion
+
+        #region forUser
+        public async Task<IActionResult> cookedDishes()
+        {
+            rvm = new Dictionary<Dish, Rating>();
+            var dishes = _cookedManager.GetAll(HttpContext.User.Identity.Name);
+            foreach (var dish in dishes)
+            {
+                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+            }
+            ViewBag.rvm = rvm;
+            return View();
+        }
+
+        public async Task<IActionResult> FavouriteDishes()
+        {
+            rvm = new Dictionary<Dish, Rating>();
+            var dishes = _favouriteManager.GetAll(HttpContext.User.Identity.Name);
+            foreach (var dish in dishes)
+            {
+                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Rating_Id));
+            }
+            ViewBag.rvm = rvm;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteFavourite(int dishId)
+        {
+            _favouriteManager.Delete(dishId, HttpContext.User.Identity.Name);
+            return RedirectToAction("FavouriteDishes");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteCooked(int dishId)
+        {
+            _favouriteManager.Delete(dishId, HttpContext.User.Identity.Name);
+            return RedirectToAction("cookedDishes");
+        }
+
+        #endregion
     }
 }

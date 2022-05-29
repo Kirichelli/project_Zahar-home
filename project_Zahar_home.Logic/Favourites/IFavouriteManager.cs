@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace project_Zahar_home.Logic.Favourites
 {
-    internal interface IFavouriteManager
+    public interface IFavouriteManager
     {
+        void Add(int dishId, string Email);
+        Task Delete(int dishId, string Email);
+        IList<Dish> GetAll(string Email);
     }
 }
