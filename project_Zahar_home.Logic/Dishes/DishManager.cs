@@ -44,12 +44,22 @@ namespace project_Zahar_home.Logic.Dishes
             {
                 _context.Ratings.Remove(rating);
             }
-            var cooked = _context.Cooked.FirstOrDefault(c => c.UserRating.Rating.Dish_Id == id);
+            var cooked = _context.Cooked.Where(c => c.UserRating.Rating.Dish_Id == id).ToList();
             if (cooked != null)
             {
-                _context.Cooked.Remove(cooked);
+                foreach (var item in cooked)
+                {
+                    _context.Cooked.Remove(item);
+                }
             }
-
+            var userRatings = _context.UserRatings.Where(ur => ur.Rating.Dish_Id == id).ToList();
+            if (userRatings != null)
+            {
+                foreach (var item in userRatings)
+                {
+                    _context.UserRatings.Remove(item);
+                }
+            }
             var dish = _context.Dishes.FirstOrDefault(u => u.Dish_Id == id);
             if (dish != null)
             {

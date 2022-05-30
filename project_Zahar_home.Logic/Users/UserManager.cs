@@ -35,7 +35,7 @@ namespace project_Zahar_home.Logic.Users
             }
         }
 
-        public async Task<IList<User>> GetAll() => await _recipeContext.Users.ToListAsync();
+        public async Task<IList<User>> GetAll() => await _recipeContext.Users.Where(u => !u.Email.Equals("admin")).ToListAsync();
 
         public async Task<User> getUser(string email) => await _recipeContext.Users.FirstOrDefaultAsync(u => u.Email == email);
 

@@ -45,7 +45,7 @@ namespace project_Zahar_home.Controllers
                     await _userManager.Add(user);
 
                     await Authenticate(user); // аутентификация
-
+                    ViewBag.pvm = user;
                     return RedirectToAction("Personal_account", "Account");
                 }
                 else
@@ -68,6 +68,7 @@ namespace project_Zahar_home.Controllers
                 if (user != null)
                 {
                     await Authenticate(user);// аутентификация
+                    ViewBag.pvm = user;
                     return RedirectToAction("Personal_account", "Account");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
