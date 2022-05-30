@@ -49,6 +49,13 @@ namespace project_Zahar_home.Logic.Dishes
             {
                 _context.Cooked.Remove(cooked);
             }
+
+            var dish = _context.Dishes.FirstOrDefault(u => u.Dish_Id == id);
+            if (dish != null)
+            {
+                _context.Dishes.Remove(dish);
+
+            }
             await _context.SaveChangesAsync();
         }
 

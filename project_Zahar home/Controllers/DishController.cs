@@ -2,6 +2,7 @@
 using project_Zahar_home.Logic.Cooked;
 using project_Zahar_home.Logic.Dishes;
 using project_Zahar_home.Logic.Ratings;
+using project_Zahar_home.Storage.Entities;
 
 namespace project_Zahar_home.Controllers
 {
@@ -32,5 +33,25 @@ namespace project_Zahar_home.Controllers
             return RedirectToAction("Index");
         }
 
+        
+
+/*        public ActionResult Report(Dish dish)
+        {
+            DishReport dishReport = new DishReport();
+            byte[] abytes = dishReport.PrepareReport();
+            return File(abytes,"application/pdf");
+        }
+
+        public List<Dish> GetDishes()
+        {
+            List<Dish> dishes = new List<Dish>();
+            Dish dish = new Dish();
+            for (int i = 1; i <=4; i++)
+            {
+                dish = new Dish();
+                dish.Dish_Id = i;
+                dish.Name_Dish = name;
+            }
+        }*/
     }
 }

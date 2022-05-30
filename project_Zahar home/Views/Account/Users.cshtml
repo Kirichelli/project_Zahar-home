@@ -1,7 +1,11 @@
 ﻿@page
-
+<div class="container">
 @foreach (var us in ViewBag.uvm)
 {
+    <table>
+    <tr>
+        <td>Email</td>
+    </tr>
     <tr>
         <td>@us.Email</td> 
         <td>
@@ -10,5 +14,6 @@
             </a>
         </td>
     </tr>
-    
+    </table>
 }
+</div>

@@ -1,7 +1,6 @@
-﻿@model project_Zahar_home.Models.LoginModel                                                                                                                                                                                 
-@{
-ViewData["Title"] = "Account";
-}
+﻿@*@model project_Zahar_home.Models.LoginModel           *@
+@page
+
     <section class="account">
             <div class="account__container container">
                <div class="account__control control-account">
@@ -19,18 +18,29 @@ ViewData["Title"] = "Account";
                   </button>
                </div>
                <div class="account__info info-account">
-                  <div class="slider-account">
-                     <div class="slider-account__item item-account">
-               <div class="account__photo photo-account">
-                  <div class="photo-account__image">
-                @*@if (Model.Photo != null)
+    @*                               @if (ViewBag.uvm.Email == "admin")
                 {
+                    <p>Администратор</p>
                     <img src="@Model.Photo" alt="Photo">
                 }
                 else
                 {
+                    <p>Пользователь</p>
+
                     <img src="no-photo.png" alt="Photo"> // Вывод "нет фото", если фотки нет
                 }*@
+                  <div class="slider-account">
+                     <div class="slider-account__item item-account">
+               <div class="account__photo photo-account">
+                  <div class="photo-account__image">
+                @if (ViewBag != null)
+                {
+                    <img src="//img/content/women.jpg5" alt="Photo">
+                }
+                else
+                {
+                    <img src="no-photo.png" alt="Photo">
+                }
             </div>
                   <button class="photo-account__change">Изменить фото</button>
                </div>

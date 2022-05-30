@@ -22,6 +22,8 @@ namespace project_Zahar_home.Logic.Cooked
             var rate = await _context.Ratings.FirstOrDefaultAsync(r => r.Rating_Id == rating_Id);
             var cooked = await _context.Cooked.FirstOrDefaultAsync(c => c.UserRating.Rating_Id == rating_Id && c.UserRating.User_Id == user.User_Id);
             _context.Cooked.Remove(cooked);
+            var userRating = await _context.UserRatings.FirstOrDefaultAsync(ur => ur.Rating_Id == rating_Id && ur.User_Id == user.User_Id);
+            _context.UserRatings.Remove(userRating);
             int count = 0;
             double value = 0;
             foreach (var item in _context.UserRatings.ToList())

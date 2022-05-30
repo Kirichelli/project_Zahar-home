@@ -108,15 +108,7 @@ namespace project_Zahar_home.Controllers
             return RedirectToAction("Dishes");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteDish(int id)
-        {
-            _dishManager.Delete(id);
-            return RedirectToAction("Dishes");
-
-        }
-
+      
         public async Task<IActionResult> Dishes()
         {
             rvm = new Dictionary<Dish, Rating>();
@@ -128,7 +120,12 @@ namespace project_Zahar_home.Controllers
             ViewBag.rvm = rvm;
             return View();
         }
+        public async Task<IActionResult> DeleteDish(int id)
+        {
+            await _dishManager.Delete(id);
+            return RedirectToAction("Dishes");
 
+        }
         public async Task<IActionResult> Users()
         {
             ViewBag.uvm = await _userManager.GetAll();

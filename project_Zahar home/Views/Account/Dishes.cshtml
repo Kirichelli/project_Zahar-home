@@ -1,0 +1,28 @@
+﻿@page
+<div class="container">
+@foreach (var item in ViewBag.rvm)
+{
+    <table>
+    <tr>
+        <td>Название</td>
+        <td>Сложность</td>
+
+    </tr>
+    <tr>
+        <td>@item.Key.Name_Dish</td>
+        <td>@item.Key.Level</td> 
+        
+        <td>
+            <a asp-action="CreateDish" asp-controller="Account" asp-route-id="@item.Key.Dish_Id" class="input button-reg" type="submit" name="submit">
+                Добавить
+            </a>
+        </td>
+                <td>
+            <a asp-action="DeleteDish" asp-controller="Account" asp-route-id="@item.Key.Dish_Id" class="input button-reg" type="submit" name="submit">
+                Удалить
+            </a>
+        </td>
+    </tr>
+    </table>
+}
+</div>
