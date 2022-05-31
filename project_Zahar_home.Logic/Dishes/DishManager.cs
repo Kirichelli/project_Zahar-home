@@ -27,8 +27,9 @@ namespace project_Zahar_home.Logic.Dishes
             rate.Rating_Value = value / count;
             var userRating = new UserRating { Rating_Value = rating, Rating_Id = rate.Rating_Id, User_Id = user.User_Id };
             _context.UserRatings.Add(userRating);
-            _context.Cooked.Add(new Storage.Entities.Cooked { UserRating_Id = userRating.UserRating_Id});
-             _context.SaveChangesAsync();
+            _context.SaveChanges();
+            _context.Cooked.Add(new Storage.Entities.Cooked { UserRating_Id = userRating.UserRating_Id });
+             _context.SaveChanges();
         }
 
         public async Task Create(Dish dish)
