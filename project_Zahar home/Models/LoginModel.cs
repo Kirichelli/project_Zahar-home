@@ -4,7 +4,7 @@ namespace project_Zahar_home.Models
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "Не указан Email")]
+        [Required(ErrorMessage = "Не указан Email/имя пользователя")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]

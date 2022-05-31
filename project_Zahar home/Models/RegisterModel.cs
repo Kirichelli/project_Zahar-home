@@ -7,7 +7,10 @@ namespace project_Zahar_home.Models
             [Required(ErrorMessage = "Не указан Email")]
             public string Email { get; set; }
 
-            [Required(ErrorMessage = "Не указан пароль")]
+            [Required(ErrorMessage = "Не указано имя пользователя")]
+            public string UserName { get; set; }
+
+        [Required(ErrorMessage = "Не указан пароль")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 

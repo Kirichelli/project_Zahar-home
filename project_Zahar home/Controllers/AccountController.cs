@@ -37,19 +37,24 @@ namespace project_Zahar_home.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.getUser(model.Email);
+                var user = await _userManager.getUser(model.Email, model.UserName);
                 if (user == null)
                 {
                     // добавляем пользователя в бд
-                    user = new User { Email = model.Email, Password = model.Password };
+                    user = new User { Email = model.Email, Password = model.Password, UserName = model.UserName };
                     await _userManager.Add(user);
 
                     await Authenticate(user); // аутентификация
                     ViewBag.em = user.Email;
                     return RedirectToAction("Personal_account", "Account");
                 }
-                else
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                else if (user.Email.Equals(model.Email))
+                {
+                    ModelState.AddModelError("", "пользователь с таким email уже существует");
+                } else if (user.UserName.Equals(model.UserName))
+                {
+                    ModelState.AddModelError("", "Пользователь с таким именем уже существует");
+                }
             }
             return View(model);
         }
@@ -171,6 +176,21 @@ namespace project_Zahar_home.Controllers
             return RedirectToAction("cookedDishes");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Settings()
+        {
+            var user = await _userManager.getUser(HttpContext.User.Identity.Name, "");
+            ViewBag.UserName = user.UserName;
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangeUserName(string name)
+        {
+            _userManager.ChangeNick(name, HttpContext.User.Identity.Name);
+            
+            return RedirectToAction("Settings");
+        }
         #endregion
     }
 }

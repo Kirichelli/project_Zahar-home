@@ -10,8 +10,9 @@ namespace project_Zahar_home.Logic.Users
     {
         Task<IList<User>> GetAll();
         Task Add(User user);
-        Task<User> getUser(string email);
+        Task<User> getUser(string email, string userName);
         Task<User> getUserWithRole(string email, string password);
         Task Delete(int id);
+        void ChangeNick(string nick, string email);
     }
 }
