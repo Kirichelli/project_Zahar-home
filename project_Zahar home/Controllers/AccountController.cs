@@ -37,12 +37,12 @@ namespace project_Zahar_home.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.getUser(model.Email, model.UserName);
+                var user = _userManager.getUser(model.Email, model.UserName);
                 if (user == null)
                 {
                     // добавляем пользователя в бд
                     user = new User { Email = model.Email, Password = model.Password, UserName = model.UserName };
-                    await _userManager.Add(user);
+                    _userManager.Add(user);
 
                     await Authenticate(user); // аутентификация
                     ViewBag.em = user.Email;
@@ -69,7 +69,7 @@ namespace project_Zahar_home.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.getUserWithRole(model.Email, model.Password);
+                var user = _userManager.getUserWithRole(model.Email, model.Password);
                 if (user != null)
                 {
                     await Authenticate(user);// аутентификация
@@ -81,7 +81,7 @@ namespace project_Zahar_home.Controllers
             }
             return View(model);
         }
-        public async Task<IActionResult> Personal_account()
+        public IActionResult Personal_account()
         {
             ViewBag.em = HttpContext.User.Identity.Name;
             if (!HttpContext.User.Identity.IsAuthenticated) { RedirectToAction("Register", "Account"); }
@@ -116,53 +116,53 @@ namespace project_Zahar_home.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateDish(Dish dish)
+        public ActionResult CreateDish(Dish dish)
         {
-            var dishh = await _dishManager.getDish(dish.Dish_Id);
+            var dishh = _dishManager.getDish(dish.Dish_Id);
             if (dishh == null)
                 _dishManager.Create(dish);
             return View();
         }
 
       
-        public async Task<IActionResult> Dishes()
+        public IActionResult Dishes()
         {
             rvm = new Dictionary<Dish, Rating>();
-            var dishes = await _dishManager.GetAll();
+            var dishes = _dishManager.GetAll();
             foreach (var dish in dishes)
             {
-                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Dish_Id));
+                rvm.Add(dish, _ratingManager.GetDishRating(dish.Dish_Id));
             }
             ViewBag.rvm = rvm;
             return View();
         }
-        public async Task<IActionResult> DeleteDish(int id)
+        public IActionResult DeleteDish(int id)
         {
-            await _dishManager.Delete(id);
+            _dishManager.Delete(id);
             return RedirectToAction("Dishes");
 
         }
-        public async Task<IActionResult> Users()
+        public IActionResult Users()
         {
-            ViewBag.uvm = await _userManager.GetAll();
+            ViewBag.uvm = _userManager.GetAll();
             return View(); 
         }
 /*          return RedirectToAction("Users");*/
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-            await _userManager.Delete(id);
+            _userManager.Delete(id);
             return RedirectToAction("Users");
         }
         #endregion
 
         #region forUser
-        public async Task<IActionResult> cookedDishes()
+        public IActionResult cookedDishes()
         {
             rvm = new Dictionary<Dish, Rating>();
             var dishes = _cookedManager.GetAll(HttpContext.User.Identity.Name);
             foreach (var dish in dishes)
             {
-                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Dish_Id));
+                rvm.Add(dish, _ratingManager.GetDishRating(dish.Dish_Id));
             }
             ViewBag.rvm = rvm;
             return View();
@@ -177,9 +177,9 @@ namespace project_Zahar_home.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Settings()
+        public IActionResult Settings()
         {
-            var user = await _userManager.getUser(HttpContext.User.Identity.Name, "");
+            var user = _userManager.getUser(HttpContext.User.Identity.Name, "");
             ViewBag.UserName = user.UserName;
             return View();
         }

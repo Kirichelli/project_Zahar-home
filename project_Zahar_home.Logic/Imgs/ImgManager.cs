@@ -14,7 +14,7 @@ namespace project_Zahar_home.Logic.Imgs
         {
             _context = context;
         }
-        public async Task<Img> GetDishImage(int DishId) => await _context.Imgs.FirstOrDefaultAsync(r => r.Dish_Id == DishId);
-        public async Task<IList<Img>> GetAll() => await _context.Imgs.ToListAsync();
+        public Img GetDishImage(int DishId) => _context.Imgs.FirstOrDefault(r => r.Dish_Id == DishId);
+        public IList<Img> GetAll() => _context.Imgs.ToList();
     }
 }

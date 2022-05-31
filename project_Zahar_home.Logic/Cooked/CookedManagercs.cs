@@ -16,13 +16,13 @@ namespace project_Zahar_home.Logic.Cooked
         }
 
 
-        public async Task Delete(int rating_Id, string Email)
+        public void Delete(int rating_Id, string Email)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.Equals(Email));
-            var rate = await _context.Ratings.FirstOrDefaultAsync(r => r.Rating_Id == rating_Id);
-            var cooked = await _context.Cooked.FirstOrDefaultAsync(c => c.UserRating.Rating_Id == rating_Id && c.UserRating.User_Id == user.User_Id);
+            var user = _context.Users.FirstOrDefault(u => u.Email.Equals(Email));
+            var rate = _context.Ratings.FirstOrDefault(r => r.Rating_Id == rating_Id);
+            var cooked = _context.Cooked.FirstOrDefault(c => c.UserRating.Rating_Id == rating_Id && c.UserRating.User_Id == user.User_Id);
             _context.Cooked.Remove(cooked);
-            var userRating = await _context.UserRatings.FirstOrDefaultAsync(ur => ur.Rating_Id == rating_Id && ur.User_Id == user.User_Id);
+            var userRating = _context.UserRatings.FirstOrDefault(ur => ur.Rating_Id == rating_Id && ur.User_Id == user.User_Id);
             _context.UserRatings.Remove(userRating);
             int count = 0;
             double value = 0;
@@ -35,7 +35,7 @@ namespace project_Zahar_home.Logic.Cooked
                 }
             }
             rate.Rating_Value = value / count;
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public IList<Dish> GetAll(string Email)

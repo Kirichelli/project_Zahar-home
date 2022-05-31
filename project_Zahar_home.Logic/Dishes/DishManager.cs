@@ -32,13 +32,13 @@ namespace project_Zahar_home.Logic.Dishes
              _context.SaveChanges();
         }
 
-        public async Task Create(Dish dish)
+        public void Create(Dish dish)
         {
             _context.Dishes.Add(dish);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
-        public async Task Delete(int id)
+        public void Delete(int id)
         {
             var rating = _context.Ratings.FirstOrDefault(r => r.Dish_Id == id);
             if (rating != null)
@@ -67,14 +67,14 @@ namespace project_Zahar_home.Logic.Dishes
                 _context.Dishes.Remove(dish);
 
             }
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
-        public async Task<IList<Dish>> GetAll() => await _context.Dishes.ToListAsync();
+        public IList<Dish> GetAll() => _context.Dishes.ToList();
 
-        public async Task<Dish> getDish(int id) => await _context.Dishes.FirstOrDefaultAsync(d => d.Dish_Id == id);
+        public Dish getDish(int id) => _context.Dishes.FirstOrDefault(d => d.Dish_Id == id);
 
-        public async Task<IList<Dish>> nameFilter(string searchString) => await _context.Dishes.Where(d => d.Name_Dish.Contains(searchString)).ToListAsync();
+        public IList<Dish> nameFilter(string searchString) => _context.Dishes.Where(d => d.Name_Dish.Contains(searchString)).ToList();
 
         public IList<Dish> GetDishesByProperties(IList<Dish> dishes , string? level, int? calloriesMin, int? calloriesMax, int? proteinMin, int? proteinMax, int? carbohydratMin, int? carbohydratMax, int? fatMin, int? fatMax, string? typeName)
         {

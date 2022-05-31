@@ -18,10 +18,10 @@ namespace project_Zahar_home.Controllers
             _ratingManager = ratingManager; 
         }
 
-        public async Task<IActionResult> Index(int dishId)
+        public IActionResult Index(int dishId)
         {
-            var dish = await _dishManager.getDish(dishId);
-            var rating = await _ratingManager.GetDishRating(dish.Dish_Id);
+            var dish = _dishManager.getDish(dishId);
+            var rating = _ratingManager.GetDishRating(dish.Dish_Id);
             ViewBag.dish = dish;
             ViewBag.rating = rating;
             return View();

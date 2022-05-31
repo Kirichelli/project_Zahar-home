@@ -16,13 +16,13 @@ namespace project_Zahar_home.Logic.Users
             _recipeContext = context;
         }
 
-        public async Task Add(User user)
+        public void Add(User user)
         {
-            Role userRole = await _recipeContext.Roles.FirstOrDefaultAsync(r => r.Name == "user");
+            Role userRole = _recipeContext.Roles.FirstOrDefault(r => r.Name == "user");
             if (userRole != null)
                 user.Role = userRole;
             _recipeContext.Users.Add(user);
-            await _recipeContext.SaveChangesAsync();
+            _recipeContext.SaveChanges();
         }
 
         public void ChangeNick(string nick, string email)
@@ -36,20 +36,20 @@ namespace project_Zahar_home.Logic.Users
             } 
         }
 
-        public async Task Delete(int id)
+        public void Delete(int id)
         {
             var user = _recipeContext.Users.FirstOrDefault(u => u.User_Id == id);
             if (user != null)
             {
                 _recipeContext.Users.Remove(user);
-                await _recipeContext.SaveChangesAsync();
+                _recipeContext.SaveChanges();
             }
         }
 
-        public async Task<IList<User>> GetAll() => await _recipeContext.Users.Where(u => !u.Email.Equals("admin")).ToListAsync();
+        public IList<User> GetAll() => _recipeContext.Users.Where(u => !u.Email.Equals("admin")).ToList();
 
-        public async Task<User> getUser(string email, string userName) => await _recipeContext.Users.FirstOrDefaultAsync(u => u.Email.Equals(email) || u.UserName.Equals(userName));
+        public User getUser(string email, string userName) => _recipeContext.Users.FirstOrDefault(u => u.Email.Equals(email) || u.UserName.Equals(userName));
 
-        public async Task<User> getUserWithRole(string email, string password) => await _recipeContext.Users.Include(u => u.Role).FirstOrDefaultAsync(u => (u.Email.Equals(email) || u.UserName.Equals(email)) && u.Password.Equals(password));
+        public User getUserWithRole(string email, string password) => _recipeContext.Users.Include(u => u.Role).FirstOrDefault(u => (u.Email.Equals(email) || u.UserName.Equals(email)) && u.Password.Equals(password));
     }
 }

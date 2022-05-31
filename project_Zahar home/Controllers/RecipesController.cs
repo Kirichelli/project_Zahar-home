@@ -36,30 +36,30 @@ namespace project_Zahar_home.Controllers
             }
             return RedirectToAction("Index");
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             if (rvm == null)
             {
                 rvm = new Dictionary<Dish, Rating>();
-                var dishes = await _dishManager.GetAll();
+                var dishes = _dishManager.GetAll();
                 foreach (var dish in dishes)
                 {
-                    rvm.Add(dish, await _ratingManager.GetDishRating(dish.Dish_Id));
+                    rvm.Add(dish, _ratingManager.GetDishRating(dish.Dish_Id));
                 }
-                image = await _imgManager.GetAll();
+                image = _imgManager.GetAll();
             }
             ViewBag.rvm = rvm;
             ViewBag.Image = image;
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Search(string searchString)
+        public IActionResult Search(string searchString)
         {
             rvm = new Dictionary<Dish, Rating>();
-            var dishes = await _dishManager.nameFilter(searchString);
+            var dishes = _dishManager.nameFilter(searchString);
             foreach (var dish in dishes)
             {
-                rvm.Add(dish, await _ratingManager.GetDishRating(dish.Dish_Id));
+                rvm.Add(dish, _ratingManager.GetDishRating(dish.Dish_Id));
             }
             ViewBag.rvm = rvm;
             return RedirectToAction("Index");
@@ -90,7 +90,6 @@ namespace project_Zahar_home.Controllers
         }
         public async Task<IActionResult> ratingChange(int rating)
         {
-            await Task.Delay(0);
             _dishManager.changeRating(_dishRatingId, rating, HttpContext.User.Identity.Name);
             return RedirectToAction("Index");
         }
