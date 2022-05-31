@@ -103,14 +103,20 @@ namespace project_Zahar_home.Controllers
             return RedirectToAction("Index", "Home");
         }
         #region forAdmin
+        [HttpGet]
+        public IActionResult CreateDish()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateDish(Dish dish)
         {
             var dishh = await _dishManager.getDish(dish.Dish_Id);
             if (dishh == null)
-            _dishManager.Create(dish);
-            return RedirectToAction("Dishes");
+                _dishManager.Create(dish);
+            return View();
         }
 
       

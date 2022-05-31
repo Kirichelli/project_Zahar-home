@@ -407,6 +407,45 @@ a.ui-button:active,
     height:54px;
     width:54px;
 }
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    margin:30px;
+    font-size: 14px;
+    max-width: 70%;
+    width: 70%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    font-weight: normal;
+    color: #039;
+    border-bottom: 2px solid #6678b1;
+    padding: 10px 8px;
+}
+td {
+    padding: 9px 8px;
+    transition: .3s linear;
+}
+
+td:not([.button-del]){
+    color: #669;
+    padding: 9px 8px;
+    transition: .3s linear;
+}
+td:not([.button-reg]) {
+    color: #669;
+    padding: 9px 8px;
+    transition: .3s linear;
+}
+
+
+
+/*tr:not([.button-del]) hover td {
+    color: red;
+}*/
+
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
@@ -619,6 +658,21 @@ body.lock {
   background: rgba(72, 90, 145, 0.89);
   border-radius: 5px;
   margin: 0 auto;
+}
+.button-del {
+    font-weight: 700;
+    text-align: center;
+    font-size: 12px;
+    display: block;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    line-height: 18px;
+    color: #FFFFFF;
+    padding: 10px;
+    background: #DE3030;
+    border-radius: 5px;
+    margin: 0 auto;
 }
 
 .no-webp .name{

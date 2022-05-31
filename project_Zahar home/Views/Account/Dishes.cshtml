@@ -1,28 +1,33 @@
 ﻿@page
 <div class="container">
-@foreach (var item in ViewBag.rvm)
-{
+                     <form asp-action="CreateDish" asp-controller="Account" asp-anti-forgery="true">   
+                     <input class="input button-reg" type="submit" value="Создать рецепт" name="submit">
+             </form>       
     <table>
     <tr>
-        <td>Название</td>
-        <td>Сложность</td>
-
+        <th>Id</th>
+        <th>Название блюда</th>
+        <th>Сложность</th>
     </tr>
+    @foreach (var item in ViewBag.rvm)
+{
     <tr>
+        <td>@item.Key.Dish_Id</td>
         <td>@item.Key.Name_Dish</td>
         <td>@item.Key.Level</td> 
         
         <td>
             <a asp-action="CreateDish" asp-controller="Account" asp-route-id="@item.Key.Dish_Id" class="input button-reg" type="submit" name="submit">
-                Добавить
+                Изменить
             </a>
         </td>
                 <td>
-            <a asp-action="DeleteDish" asp-controller="Account" asp-route-id="@item.Key.Dish_Id" class="input button-reg" type="submit" name="submit">
+            <a asp-action="DeleteDish" asp-controller="Account" asp-route-id="@item.Key.Dish_Id" class="input button-del" type="submit" name="submit">
                 Удалить
             </a>
         </td>
     </tr>
+    }
     </table>
-}
+
 </div>

@@ -1,0 +1,95 @@
+﻿  @model project_Zahar_home.Storage.Entities.Dish     
+  <section class="registration">
+            <div class="registration__container container">
+               <div class="registration__content content-registration">
+                  <h2 class="dish__title">Регистрация</h2>
+                  <form class="form-reg" asp-action="CreateDish" asp-controller="Account" asp-anti-forgery="true">
+                     <div class="validation" asp-validation-summary="ModelOnly"></div>
+                     <div>
+
+                     <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Название блюда</div>
+                        <div class="block-registration__place">
+                           <input class="email place-form" type="text" asp-for="Name_Dish" name="email" placeholder="Введите название">
+                                       <span asp-validation-for="Name_Dish" />
+                        </div>
+                     </div>
+
+                     <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Каллорийность</div>
+                        <div class="block-registration__place">
+                           <input class="pass place-form" type="number" asp-for="Callories" placeholder="Каллорийность">
+                        </div>
+                     </div>
+
+                     <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Белки</div>
+                        <div class="block-registration__place">
+                           <input class="pass place-form" type="number" asp-for="Protein" placeholder="Белки">
+                        </div>
+                     </div>
+
+                     
+                     <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Жиры</div>
+                        <div class="block-registration__place">
+                           <input class="pass place-form" type="number" asp-for="Fat" placeholder="Жиры">
+                        </div>
+                     </div>
+
+                     
+                     <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Углеводы</div>
+                        <div class="block-registration__place">
+                           <input class="pass place-form" type="number" asp-for="Carbohydrat" placeholder="Углеводы">
+                        </div>
+                     </div>
+
+                                          <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Время готовки</div>
+                        <div class="block-registration__place">
+                           <input class="pass place-form" type="number" asp-for="Cook_Time" placeholder="Введите время">
+                        </div>
+                     </div>
+
+                                                               <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Уровень</div>
+                        <div class="block-registration__place">
+                           <input class="pass place-form" type="text" asp-for="Level" placeholder="Уровень">
+                        </div>
+                     </div>
+
+                                                                                    <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Описание</div>
+                        <div class="block-registration__place">
+                           <input class="pass place-form" type="text" asp-for="Discription" placeholder="Описание">
+                        </div>
+                     </div>
+
+                                                                                    <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Ингридиенты</div>
+                        <div class="block-registration__place">
+                           <input class="pass place-form" type="text" asp-for="Ingredients" placeholder="Ингридиенты">
+                        </div>
+                     </div>
+
+                                                                                    <div class="content-registration__block block-registration">
+                        <div class="block-registration__name">Id кухни</div>
+                        <div class="block-registration__place">
+                           <input class="pass place-form" type="number" asp-for="Type_Id" placeholder="Кухня">
+                        </div>
+                     </div>
+
+                     <input class="input button-reg" type="submit" value="Зарегистрироваться" name="submit">
+                     </div>
+                  </form>
+               <div class="registration__decor decor-registration">
+                  <div class="decor-registration__text text-decor">Еще не зарегистрирован? <br> Тогда чего же ты ждешь?
+                     <br> Кулинарный мир Захара ждет тебя!
+                  </div>
+                  <div class="decor-registration__image image-decor">
+                     <picture><source srcset="~/img/content/reg.webp" type="image/webp"><img src="~/img/content/reg.png" alt="reg"></picture>
+                  </div>
+               </div>
+            </div>
+         </section>
