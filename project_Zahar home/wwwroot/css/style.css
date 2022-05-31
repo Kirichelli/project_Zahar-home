@@ -403,7 +403,10 @@ a.ui-button:active,
 
 /* Interaction Cues
 ----------------------------------*/
-
+.in{
+    height:54px;
+    width:54px;
+}
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
@@ -1675,6 +1678,7 @@ main .control-dish .control-dish__button {
 }
 
 main .image-dish .image-dish__main {
+  margin: 0 auto;
   margin-bottom: 25px;
   max-width: 650px;
   width: calc(100vw - 30px);
@@ -1697,14 +1701,14 @@ main .image-dish .image-dish__main * {
 
 main .other-dish {
   display: flex;
-  gap: 25px;
+  gap: 10px;
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
 main .other-dish .other-dish__item {
-  width: 140px;
+  width: max-content;
   height: 100px;
   overflow: hidden;
   transition: all 0.3s;
@@ -2239,6 +2243,11 @@ main .photo-account .photo-account__change {
     align-items: center;
     justify-content: center;
   }
+
+    .in {
+        width: 44px;
+        height: 44px;
+    }
 
   .footer .footer__content {
     display: flex;

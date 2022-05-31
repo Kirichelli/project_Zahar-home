@@ -12,8 +12,8 @@ using project_Zahar_home.Storage;
 namespace project_Zahar_home.Storage.Migrations
 {
     [DbContext(typeof(RecipeContext))]
-    [Migration("20220529195333_Test")]
-    partial class Test
+    [Migration("20220530190301_Base")]
+    partial class Base
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -105,6 +105,9 @@ namespace project_Zahar_home.Storage.Migrations
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Vid")
+                        .HasColumnType("int");
 
                     b.HasKey("Img_Id");
 
@@ -206,6 +209,10 @@ namespace project_Zahar_home.Storage.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Photo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

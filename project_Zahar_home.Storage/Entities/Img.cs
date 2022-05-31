@@ -13,7 +13,7 @@ namespace project_Zahar_home.Storage.Entities
         public int Dish_Id { get; set; }
         [ForeignKey(nameof(Dish_Id))]
         public virtual Dish Dish { get; set; }
-
+        public string Vid { get; set; }
         public string Url { get; set; }
     }
 }

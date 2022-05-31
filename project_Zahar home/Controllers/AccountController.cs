@@ -45,7 +45,7 @@ namespace project_Zahar_home.Controllers
                     await _userManager.Add(user);
 
                     await Authenticate(user); // аутентификация
-                    ViewBag.pvm = user;
+                    ViewBag.em = user.Email;
                     return RedirectToAction("Personal_account", "Account");
                 }
                 else
@@ -68,7 +68,8 @@ namespace project_Zahar_home.Controllers
                 if (user != null)
                 {
                     await Authenticate(user);// аутентификация
-                    ViewBag.pvm = user;
+                    ViewBag.em = user.Email;
+
                     return RedirectToAction("Personal_account", "Account");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -77,6 +78,7 @@ namespace project_Zahar_home.Controllers
         }
         public async Task<IActionResult> Personal_account()
         {
+            ViewBag.em = HttpContext.User.Identity.Name;
             if (!HttpContext.User.Identity.IsAuthenticated) { RedirectToAction("Register", "Account"); }
             return View();
         }
@@ -103,8 +105,10 @@ namespace project_Zahar_home.Controllers
         #region forAdmin
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateDish(Dish dish)
+        public async Task<ActionResult> CreateDish(Dish dish)
         {
+            var dishh = await _dishManager.getDish(dish.Dish_Id);
+            if (dishh == null)
             _dishManager.Create(dish);
             return RedirectToAction("Dishes");
         }

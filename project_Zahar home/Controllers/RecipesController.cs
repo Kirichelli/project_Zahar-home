@@ -28,6 +28,7 @@ namespace project_Zahar_home.Controllers
                 if (dish.Key.Dish_Id == id)
                 {
                     ViewBag.Dish = dish;
+                    ViewBag.Image = image;
                     return View();
                 }
             }

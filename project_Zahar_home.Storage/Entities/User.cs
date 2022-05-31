@@ -19,7 +19,7 @@
         [ForeignKey(nameof(RoleId))]
         public virtual Role Role { get; set; }
         /*public virtual Dictionary<Rating, int> Ratings { get; set; }*/
-
+        public string? Photo { get; set; }
 
 
     }
