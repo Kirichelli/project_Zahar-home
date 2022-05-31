@@ -10,10 +10,10 @@ namespace project_Zahar_home.Logic.Dishes
             _context = context;
         }
 
-        public async void changeRating(int id, int rating, string userEmail)
+        public  void changeRating(int id, int rating, string userEmail)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.Equals(userEmail));
-            var rate = await _context.Ratings.FirstOrDefaultAsync(r => r.Rating_Id == id);
+            var user =  _context.Users.FirstOrDefault(u => u.Email.Equals(userEmail));
+            var rate =  _context.Ratings.FirstOrDefault(r => r.Rating_Id == id);
             int count = 1;
             double value = rating;
             foreach (var item in _context.UserRatings.ToList())
@@ -28,7 +28,7 @@ namespace project_Zahar_home.Logic.Dishes
             var userRating = new UserRating { Rating_Value = rating, Rating_Id = rate.Rating_Id, User_Id = user.User_Id };
             _context.UserRatings.Add(userRating);
             _context.Cooked.Add(new Storage.Entities.Cooked { UserRating_Id = userRating.UserRating_Id});
-            await _context.SaveChangesAsync();
+             _context.SaveChangesAsync();
         }
 
         public async Task Create(Dish dish)

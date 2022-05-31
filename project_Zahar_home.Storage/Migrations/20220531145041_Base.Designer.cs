@@ -12,7 +12,7 @@ using project_Zahar_home.Storage;
 namespace project_Zahar_home.Storage.Migrations
 {
     [DbContext(typeof(RecipeContext))]
-    [Migration("20220530190301_Base")]
+    [Migration("20220531145041_Base")]
     partial class Base
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,8 +106,9 @@ namespace project_Zahar_home.Storage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Vid")
-                        .HasColumnType("int");
+                    b.Property<string>("Vid")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Img_Id");
 
@@ -213,12 +214,15 @@ namespace project_Zahar_home.Storage.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Photo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RoleId")
                         .IsRequired()
                         .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("User_Id");
 

@@ -50,13 +50,13 @@ namespace project_Zahar_home.Controllers
                 }
                 else if (user.Email.Equals(model.Email))
                 {
-                    ModelState.AddModelError("", "пользователь с таким email уже существует");
+                    ModelState.AddModelError("Email", "пользователь с таким email уже существует");
                 } else if (user.UserName.Equals(model.UserName))
                 {
-                    ModelState.AddModelError("", "Пользователь с таким именем уже существует");
+                    ModelState.AddModelError("UserName", "Пользователь с таким именем уже существует");
                 }
             }
-            return View(model);
+            return View();
         }
         [HttpGet]
         public IActionResult Login()

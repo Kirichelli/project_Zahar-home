@@ -218,6 +218,10 @@ namespace project_Zahar_home.Storage.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("User_Id");
 
                     b.HasIndex("Cooked_Id");

@@ -14,6 +14,7 @@ namespace project_Zahar_home.Controllers
         private readonly IImgManager _imgManager;
         private static Dictionary<Dish, Rating> rvm;
         private static IList<Img> image;
+        private static int _dishRatingId;
 
         public RecipesController(IDishManager manager, IRatingManager ratingManager, IImgManager imgManager)
         {
@@ -27,6 +28,7 @@ namespace project_Zahar_home.Controllers
             {
                 if (dish.Key.Dish_Id == id)
                 {
+                    _dishRatingId = dish.Value.Rating_Id;
                     ViewBag.Dish = dish;
                     ViewBag.Image = image;
                     return View();
@@ -63,6 +65,11 @@ namespace project_Zahar_home.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Clear()
+        {
+            rvm = null;
+            return RedirectToAction("Index");
+        }
         [HttpPost]
         public async Task<IActionResult> FilterAsync(string? level, int? calloriesMin, int? calloriesMax, int? proteinMin, int? proteinMax, int? carbohydratMin, int? carbohydratMax, int? fatMin, int? fatMax, int? ratingOrder, string? typeName)
         {
@@ -79,6 +86,12 @@ namespace project_Zahar_home.Controllers
                     }
                 }
             }
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> ratingChange(int rating)
+        {
+            await Task.Delay(0);
+            _dishManager.changeRating(_dishRatingId, rating, HttpContext.User.Identity.Name);
             return RedirectToAction("Index");
         }
     }
