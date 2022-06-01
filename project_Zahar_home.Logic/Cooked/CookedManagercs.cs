@@ -40,12 +40,17 @@ namespace project_Zahar_home.Logic.Cooked
 
         public IList<Dish> GetAll(string Email)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Email == Email);
-            var selected = _context.Cooked.Where(c => c.UserRating.User_Id == user.User_Id).ToList();
-            var dishes = new List<Dish>();
-            foreach(var item in selected)
+            var user = _context.Users.FirstOrDefault(u => u.Email.Equals(Email));
+            var selected = _context.UserRatings.Where(c => c.User_Id == user.User_Id).ToList();
+            var selectedRatings = new List<Rating>();
+            foreach (var item in selected)
             {
-                dishes.Add(item.UserRating.Rating.Dish);
+                selectedRatings.Add(_context.Ratings.FirstOrDefault(r => r.Rating_Id == item.Rating_Id));
+            }
+            var dishes = new List<Dish>();
+            foreach (var item in selectedRatings)
+            {
+                dishes.Add(_context.Dishes.FirstOrDefault(d => d.Dish_Id == item.Dish_Id));
             }
             return dishes;
         }

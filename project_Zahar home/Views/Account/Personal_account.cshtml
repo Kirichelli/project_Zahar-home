@@ -19,38 +19,49 @@
                    <a asp-action="Logout" asp-controller="Account" class="input button-reg" type="submit" name="submit">Выйти из аккаунта</a>
                </div>
                <div class="account__info info-account">
-                                   @if (@ViewBag.em.Equals("admin"))
+                                   @if (@ViewBag.pvm.Email.Equals("admin"))
                 {
                     <p>Здравствуйте,Администратор</p>
           
                 }
                 else
                 {
-                    <p>Здравствуйте,@ViewBag.em</p>
+                    <p>Здравствуйте,@ViewBag.UserName</p>
 
                 }
                   <div class="slider-account">
                      <div class="slider-account__item item-account">
                <div class="account__photo photo-account">
                   <div class="photo-account__image">
-@*                @if (ViewBag != null)
-                {*@
-                    <img src="/img/content/anton.jpg" alt="Photo">
-                @*}*@
-@*                else
+                @if (ViewBag.pvm.Path == null)
                 {
-                    <img src="no-photo.png" alt="Photo">
-                }*@
+                    <img src="/img/content/anton.jpg" alt="Photo">
+                }
+               else
+                {
+                    <img src="@Url.Content(ViewBag.pvm.Path)" alt="Photo">
+                }
             </div>
+            <h3>Выберите файл для загрузки</h3>
+<form asp-action="AddFile" asp-controller="Account" method="post" enctype="multipart/form-data">
+    <input type="file" name="uploadedFile" /><br>
+    <input type="submit" value="Загрузить" />
+</form>
+ 
+<h3>Все файлы</h3>
+@*@foreach(var f in Model)
+{
+    <p><img src="@Url.Content(f.Path)"></p>
+}*@
                   <button class="photo-account__change">Изменить фото</button>
                </div>
                      </div>
                      <div class="slider-account__item item-account">
 
-}
 </div>
 
-                                           <a asp-action="Logout" asp-controller="Account" class="input button-reg" type="submit" name="submit">Выйти из аккаунта</a>
+
+</div>
                                     </div>
             </div>
                         </div>

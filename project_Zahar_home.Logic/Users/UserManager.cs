@@ -10,10 +10,23 @@ namespace project_Zahar_home.Logic.Users
     public class UserManager : IUserManager
     {
         private readonly RecipeContext _recipeContext;
+        
+     
 
         public UserManager(RecipeContext context)
+            {
+                _recipeContext = context;
+            }
+
+        public void ChangePhoto(string path, string FileName, string email)
         {
-            _recipeContext = context;
+            var user = _recipeContext.Users.FirstOrDefault(u => u.Email.Equals(email));
+            if (user != null)
+            {
+                user.Path = path;
+                user.FileName = FileName;
+                _recipeContext.SaveChanges();
+            }
         }
 
         public void Add(User user)

@@ -1,0 +1,24 @@
+﻿@page
+<div class="container">
+                     <form asp-action="CreateDish" asp-controller="Account" asp-anti-forgery="true">   
+                     <input class="input button-reg" type="submit" value="Создать рецепт" name="submit">
+             </form>       
+    <table>
+    <tr>
+        <th>Название блюда</th>
+        <th>Сложность</th>
+    </tr>
+    @foreach (var item in ViewBag.rvm)
+{
+    <tr>
+        <td>@item.Key.Name_Dish</td>
+        <td>@item.Key.Level</td> 
+        
+                <td>
+            <a asp-action="DeleteDish" asp-controller="Account" asp-route-id="@item.Key.Dish_Id" class="input button-del" type="submit" name="submit">
+                Удалить
+            </a>
+        </td>
+    </tr>
+    }
+    </table>

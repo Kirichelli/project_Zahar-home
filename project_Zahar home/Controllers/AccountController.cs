@@ -13,16 +13,20 @@ namespace project_Zahar_home.Controllers
 {
     public class AccountController : Controller
     {
+        IWebHostEnvironment _appEnvironment;
         private readonly IUserManager _userManager;
         private readonly IDishManager _dishManager;
         private readonly IRatingManager _ratingManager;
         private readonly ICookedManagercs _cookedManager;
         private static Dictionary<Dish, Rating> rvm;
-        public AccountController(IUserManager manager, IRatingManager ratingManager, IDishManager dishManager)
+        public AccountController(IUserManager manager, IRatingManager ratingManager, IDishManager dishManager, ICookedManagercs cookedManager)
         {
             _userManager = manager;
             _ratingManager = ratingManager; 
             _dishManager = dishManager;
+            _cookedManager = cookedManager;
+
+
         }
         [HttpGet]
         public IActionResult Register()
@@ -74,7 +78,6 @@ namespace project_Zahar_home.Controllers
                 {
                     await Authenticate(user);// аутентификация
                     ViewBag.em = user.Email;
-
                     return RedirectToAction("Personal_account", "Account");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -83,7 +86,7 @@ namespace project_Zahar_home.Controllers
         }
         public IActionResult Personal_account()
         {
-            ViewBag.em = HttpContext.User.Identity.Name;
+            ViewBag.pvm = _userManager.getUser(HttpContext.User.Identity.Name,"");
             if (!HttpContext.User.Identity.IsAuthenticated) { RedirectToAction("Register", "Account"); }
             return View();
         }
@@ -156,13 +159,13 @@ namespace project_Zahar_home.Controllers
         #endregion
 
         #region forUser
-        public IActionResult cookedDishes()
+        public IActionResult СookedDishes()
         {
             rvm = new Dictionary<Dish, Rating>();
             var dishes = _cookedManager.GetAll(HttpContext.User.Identity.Name);
             foreach (var dish in dishes)
             {
-                rvm.Add(dish, _ratingManager.GetDishRating(dish.Dish_Id));
+                rvm.TryAdd(dish, _ratingManager.GetDishRating(dish.Dish_Id));
             }
             ViewBag.rvm = rvm;
             return View();
@@ -191,6 +194,28 @@ namespace project_Zahar_home.Controllers
             
             return RedirectToAction("Settings");
         }
-        #endregion
-    }
+
+        [HttpPost]
+        public async Task<IActionResult> AddFile(IFormFile uploadedFile)
+        {
+            if (uploadedFile != null)
+            {
+                // путь к папке Files
+                string path = "/img/content/" + uploadedFile.FileName;
+                // сохраняем файл в папку Files в каталоге wwwroot
+
+
+                _userManager.ChangePhoto(path, uploadedFile.FileName, HttpContext.User.Identity.Name);
+
+
+                /*FileMod file = new FileModel { Name = uploadedFile.FileName, Path = path };
+                Files.Add(file);
+                SaveChanges();*/
+            }
+
+            return RedirectToAction("Personal_account");
+        }
+
+            #endregion
+        }
 }

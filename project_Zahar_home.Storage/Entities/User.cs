@@ -13,6 +13,10 @@
         [Required]
         public string UserName { get; set; }
 
+        public string Path { get; set; }
+
+        public string FileName { get; set; }
+
         public int? Cooked_Id { get; set; }
 
         [ForeignKey(nameof(Cooked_Id))]

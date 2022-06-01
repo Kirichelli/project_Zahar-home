@@ -88,10 +88,17 @@ namespace project_Zahar_home.Controllers
             }
             return RedirectToAction("Index");
         }
-        public async Task<IActionResult> ratingChange(int rating)
+        public async Task<IActionResult> ratingChange(int rating, int id)
         {
             _dishManager.changeRating(_dishRatingId, rating, HttpContext.User.Identity.Name);
-            return RedirectToAction("Index");
+            rvm = new Dictionary<Dish, Rating>();
+            var dishes = _dishManager.GetAll();
+            foreach (var dish in dishes)
+            {
+                rvm.Add(dish, _ratingManager.GetDishRating(dish.Dish_Id));
+            }
+            image = _imgManager.GetAll();
+            return RedirectToAction("Inf_dish", new { id = id });
         }
     }
 }

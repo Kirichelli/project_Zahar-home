@@ -12,6 +12,7 @@ namespace project_Zahar_home.Logic.Dishes
 
         public  void changeRating(int id, int rating, string userEmail)
         {
+           
             var user =  _context.Users.FirstOrDefault(u => u.Email.Equals(userEmail));
             var rate =  _context.Ratings.FirstOrDefault(r => r.Rating_Id == id);
             int count = 1;
@@ -24,17 +25,20 @@ namespace project_Zahar_home.Logic.Dishes
                     value += item.Rating_Value;
                 }
             }
-            rate.Rating_Value = value / count;
+            rate.Rating_Value = Math.Round(value / count, 1);
             var userRating = new UserRating { Rating_Value = rating, Rating_Id = rate.Rating_Id, User_Id = user.User_Id };
             _context.UserRatings.Add(userRating);
             _context.SaveChanges();
-            _context.Cooked.Add(new Storage.Entities.Cooked { UserRating_Id = userRating.UserRating_Id });
-             _context.SaveChanges();
+            _context.Cooked.Add(new Storage.Entities.Cooked { UserRating_Id = userRating.UserRating_Id, UserRating = userRating }) ;
+            _context.Entry(rate).Property(r => r.Rating_Value).IsModified = true;
+            _context.SaveChanges();
+
         }
 
         public void Create(Dish dish)
         {
             _context.Dishes.Add(dish);
+            _context.Ratings.Add(new Rating { Dish_Id = dish.Dish_Id, Rating_Value = 0 });
             _context.SaveChanges();
         }
 

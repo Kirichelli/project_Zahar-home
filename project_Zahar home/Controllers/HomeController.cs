@@ -4,6 +4,9 @@ using project_Zahar_home.Logic.Ratings;
 using project_Zahar_home.Logic.Users;
 using project_Zahar_home.Models;
 using System.Diagnostics;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using project_Zahar_home.Storage;
 
 namespace project_Zahar_home.Controllers
 {
@@ -12,6 +15,8 @@ namespace project_Zahar_home.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IDishManager _dishManager;
         private readonly IRatingManager _ratingManager;
+        RecipeContext _context;
+        IWebHostEnvironment _appEnvironment;
         public HomeController(ILogger<HomeController> logger, IDishManager dishManager, IRatingManager ratingManager)
         {
             _logger = logger;

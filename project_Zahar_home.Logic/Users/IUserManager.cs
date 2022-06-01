@@ -14,5 +14,7 @@ namespace project_Zahar_home.Logic.Users
         User getUserWithRole(string email, string password);
         void Delete(int id);
         void ChangeNick(string nick, string email);
+        void ChangePhoto(string path, string FileName, string email);
+
     }
 }
