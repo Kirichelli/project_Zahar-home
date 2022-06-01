@@ -15,21 +15,17 @@
          <section class="dish">
             <div class="dish__container container">
                <div class="dish__content content-dish">
-                  <div class="content-dish__control control-dish">
-                     <button class="control-dish__button">
-                        <picture><source srcset="~/img/content/like.webp" type="image/webp"><img src="img/content/like.png" alt="like"></picture>
-                     </button>
-                     <button class="control-dish__button">
-                        <picture><source srcset="~/img/content/print.webp" type="image/webp"><img src="img/content/print.png" alt="print"></picture>
-                     </button>
-                     <button class="control-dish__button">
-                        <picture><source srcset="~/img/content/share.webp" type="image/webp"><img src="img/content/share.png" alt="share"></picture>
-                     </button>
-                  </div>
                   <div class="content-dish__image image-dish">
                      <h2 class="dish__title">@ViewBag.Dish.Key.Name_Dish</h2>
                      <div class="image-dish__main">
-                        <picture><source srcset="~/img/content/dish-main.webp" type="image/webp"><img src="img/content/dish-main.png" alt="dish-main"></picture>
+                                           @foreach (var image in ViewBag.Image)
+                       {
+                         if ((image.Dish_Id == ViewBag.Dish.Key.Dish_Id) &&(image.Vid == "main-top"))
+                       {
+ <picture><img src="@image.Url" alt="dish-main"></picture>
+                       }
+                       }
+                      
                      </div>
                      <div class="image-dish__other other-dish">
                         @if (ViewBag.Image != null)
@@ -106,10 +102,7 @@
                      }    
                   </div>
                </div>
-               <div class="dish__button button-dish">
-                  <button class="button-dish__btn well">Я приготовил это</button>
-                  <button class="button-dish__btn print">Распечатать</button>
-               </div>
+
                <div class="dish__bju bju-dish">
                   <h3 class="bju-dish__title title-dish">Пищевая ценность</h3>
                   <div class="bju-dish__kal">@ViewBag.Dish.Key.Callories кал</div>

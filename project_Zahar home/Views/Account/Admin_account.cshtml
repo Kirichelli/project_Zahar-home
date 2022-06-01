@@ -9,18 +9,18 @@
                   </button>
                       <form action="/Account/СookedDishes" class="form-menu">
 
-                  <button class="control-account__button">
-                     <img src="/img/content/lover.png" alt="favorite">
-                  </button>
-                      </form>
 @*                  <button class="control-account__button">
-                     <img src="/img/content/breakfast.png" alt="huetakakayato">
+                     <img src="/img/content/lover.png" alt="favorite">
                   </button>*@
-@*                                        <form action="/Account/Settings" class="form-menu">
+                      </form>
+                  <button class="control-account__button">
+                     <img src="/img/content/breakfast.png" alt="">
+                  </button>
+                                        <form action="/Account/Settings" class="form-menu">
                   <button class="control-account__button">
                      <img src="/img/content/settings.png" alt="settings">
-                  </button>*@
-                      @*</form>*@
+                  </button>
+                      </form>
                    <a asp-action="Logout" asp-controller="Account" class="input button-reg" type="submit" name="submit">Выйти из аккаунта</a>
                </div>
                <div class="account__info info-account">
@@ -49,6 +49,7 @@
 {
     <p><img src="@Url.Content(f.Path)"></p>
 }*@
+                  <button class="photo-account__change">Изменить фото</button>
                </div>
                      </div>
                      <div class="slider-account__item item-account">

@@ -54,10 +54,10 @@ namespace project_Zahar_home.Controllers
                 }
                 else if (user.Email.Equals(model.Email))
                 {
-                    ModelState.AddModelError("Email", "пользователь с таким email уже существует");
+                    ModelState.AddModelError("", "пользователь с таким email уже существует");
                 } else if (user.UserName.Equals(model.UserName))
                 {
-                    ModelState.AddModelError("UserName", "Пользователь с таким именем уже существует");
+                    ModelState.AddModelError("", "Пользователь с таким именем уже существует");
                 }
             }
             return View();
@@ -90,6 +90,9 @@ namespace project_Zahar_home.Controllers
             if (!HttpContext.User.Identity.IsAuthenticated) { RedirectToAction("Register", "Account"); }
             return View();
         }
+
+        
+
         private async Task Authenticate(User user)
         {
             // создаем один claim
@@ -130,6 +133,7 @@ namespace project_Zahar_home.Controllers
       
         public IActionResult Dishes()
         {
+            ViewBag.name = HttpContext.User.Identity.Name;
             rvm = new Dictionary<Dish, Rating>();
             var dishes = _dishManager.GetAll();
             foreach (var dish in dishes)
@@ -147,6 +151,7 @@ namespace project_Zahar_home.Controllers
         }
         public IActionResult Users()
         {
+            ViewBag.name = HttpContext.User.Identity.Name;
             ViewBag.uvm = _userManager.GetAll();
             return View(); 
         }
@@ -171,12 +176,11 @@ namespace project_Zahar_home.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteCooked(int ratingId)
+        //[ValidateAntiForgeryToken]
+        public ActionResult DeleteCooked(int id)
         {
-            _cookedManager.Delete(ratingId, HttpContext.User.Identity.Name);
-            return RedirectToAction("cookedDishes");
+            _cookedManager.Delete(id, HttpContext.User.Identity.Name);
+            return RedirectToAction("СookedDishes");
         }
 
         [HttpGet]

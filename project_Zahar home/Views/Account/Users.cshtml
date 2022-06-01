@@ -1,19 +1,26 @@
 ﻿@page
 <div class="container">
-@foreach (var us in ViewBag.uvm)
-{
-    <table>
+
+        <table>
     <tr>
+        <th>Id</th>
+        <th>Имя</th>
         <th>Email</th>
     </tr>
+    @foreach (var item in ViewBag.uvm)
+{
     <tr>
-        <td>@us.Email</td> 
+        <td>@item.User_Id</td>
+        <td>@item.UserName</td>
+        <td>@item.Email</td> 
+        
         <td>
-            <a asp-action="Delete" asp-controller="Account" asp-route-id="@us.User_Id" class="input button-reg" type="submit" name="submit">
+            <a asp-action="Delete" asp-controller="Account" asp-route-id="@item.User_Id" class="input button-reg" type="submit" name="submit">
                 Удалить
             </a>
         </td>
     </tr>
+    }
     </table>
-}
+
 </div>

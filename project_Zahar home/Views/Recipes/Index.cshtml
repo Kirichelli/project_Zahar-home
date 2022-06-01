@@ -3,14 +3,43 @@
 <main>
     <section class="catalog">
         <div class="catalog__container container">
-            <div class="catalog__head head-catalog">
+            <div class="catalog__body body-catalog">
+                <div class="body-catalog__title">Каталог рецептов</div>
+                <div class="catalog__head head-catalog">
                     <form asp-controller="Recipes" asp-action = "Filter">
                 <div class="head-catalog__filter">
-                    <button >по популярности</button>
-                    <button name="ratingOrder">по рейтингу</button>
-                    <button>по кол-ву ингридиентов</button>
-                    <button name="level">по сложности</button>
-                    <button name="typeName">по названию</button>
+                    @*<button >по популярности</button>*@
+                    <form asp-controller="Recipes" asp-action = "FilterAsync">
+                        <div class="select" id="food">
+                              <button type="button" class="select__toggle" name="ratingOrder" value="" data-select="toggle"
+                                 data-index="-1">по рейтингу</button>
+                              <div class="select__dropdown">
+                                 <ul class="select__options">
+                                    <button class="select__option" data-select="option" data-value="food-0" data-index="0" value="1" type="submit" name="ratingOrder">
+                                       От меньшего к большему
+                                       </button>
+                                    <button class="select__option" data-select="option" data-value="food-1" data-index="1" value="0" type="submit" name="ratingOrder">
+                                       От большего к меньшему</button>
+                                 </ul>
+                              </div>
+                           </div>
+                           </form>
+                    
+@*                                        <form asp-controller="Recipes" asp-action = "FilterAsync">
+                        <div class="select" id="food">
+                              <button type="button" class="select__toggle" name="level" value="" data-select="toggle"
+                                 data-index="-1">по сложности</button>
+                              <div class="select__dropdown">
+                                 <ul class="select__options">
+                                    <button class="select__option" data-select="option" data-value="food-0" data-index="0" value="1" type="submit" name="ratingOrder">
+                                       От меньшего к большему
+                                       </button>
+                                    <button class="select__option" data-select="option" data-value="food-1" data-index="1" value="0" type="submit" name="ratingOrder">
+                                       От большего к меньшему</button>
+                                 </ul>
+                              </div>
+                           </div>
+                           </form>*@
                 </div>
                    </form>
                 <div class="head-catalog__search">
@@ -20,8 +49,6 @@
                     </form>
                 </div>
             </div>
-            <div class="catalog__body body-catalog">
-                <div class="body-catalog__title">Каталог рецептов</div>
                 <div class="body-catalog__content content-catalog">
                     <div class="content-catalog__body body-catalog-menu">
 @*                        @if (Model != null)
@@ -47,7 +74,7 @@
                                     </div>
                                     <div class="item-catalog__info info-catalog">
                                         <div class="item-popular__star">@item.Value.Rating_Value</div>
-                                        <button class="info-catalog__like"></button>
+                                        @*<button class="info-catalog__like"></button>*@
                                     </div>
                                     <div class="item-catalog__name">@item.Key.Name_Dish</div>
                                 </a>
@@ -59,31 +86,13 @@
                         <div class="sidebar-catalog__head head-catalog">
                            <div class="head-catalog__title">Фильтры</div>
                            <button  class="head-catalog__clear">
-                               <a asp-action = "Clear" class="popular__more">Очистить</a>
+                               <a asp-action = "Clear">Очистить</a>
                            </button>
-                           <button @*class="input"*@ type="submit" value="" id="subscribe_form" name="submit">нррр</button>
+                           <button class="input button-reg" type="submit" >Найти</button>
                         </div>
                         <div class="sidebar-catalog__body body-catalog-sidebar">
                            <div class="body-catalog-sidebar__search">
 
-                           </div>
-                           <div class="select" id="food">
-                              <button type="button" class="select__toggle" name="food" value="" data-select="toggle"
-                                 data-index="-1">Кухня</button>
-                              <div class="select__dropdown">
-                                 <ul class="select__options">
-                                    <li class="select__option" data-select="option" data-value="food-0" data-index="0">
-                                       Хуи</li>
-                                    <li class="select__option" data-select="option" data-value="food-1" data-index="1">
-                                       ХуиХуиХуиХуиХуи</li>
-                                    <li class="select__option" data-select="option" data-value="food-2" data-index="2">
-                                       Хуи</li>
-                                    <li class="select__option" data-select="option" data-value="food-3" data-index="3">
-                                       Хуи</li>
-                                    <li class="select__option" data-select="option" data-value="food-4" data-index="4">
-                                       Хуи</li>
-                                 </ul>
-                              </div>
                            </div>
                            <div class="body-catalog__block block-catalog">
                               <div class="block-catalog__title">Каллории</div>
@@ -135,7 +144,6 @@
                      </form>
                   </div>
                </div>
-               <a href="#" class="popular__more">Показать ещё</a>
             </div>
          </section>
       </main>

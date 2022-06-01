@@ -452,15 +452,78 @@ a.ui-button:active,
     position: relative;
 }
 
+/*#p li {
+    .menu__link {
+    color: #00bfff;*/ /* Цвет обычной ссылки */
+    /*position: relative;
+    cursor: pointer;
+    text-decoration: none;*/ /* Убираем подчеркивание */
+/*}
+                }
 
+#p:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;*/ /* Высота линии */
+    /*background-color: black;*/ /* Цвет подчеркивания при исчезании линии*/
+    /*transition: width 0.5s;*/ /* Время эффекта */
+/*}
+
+#p {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;*/ /* Высота линии */
+    /*background-color: red;*/ /* Цвет подчеркивания при появлении линии*/
+    /*transition: width 0.5s;*/ /* Время эффекта */
+/*}*/
+
+.menu__link {
+    color: #00bfff; /* Цвет обычной ссылки */
+    position: relative;
+    cursor: pointer;
+    text-decoration: none; /* Убираем подчеркивание */
+}
+    .menu__link:after {
+        content: "";
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: -3px;
+        width: 0;
+        height: 2px; /* Высота линии */
+        background-color: black; /* Цвет подчеркивания при исчезании линии*/
+        transition: width 0.5s; /* Время эффекта */
+    }
+
+    .menu__link:hover:after {
+        content: "";
+        width: 100%;
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        height: 2px; /* Высота линии */
+        background-color: red; /* Цвет подчеркивания при появлении линии*/
+        transition: width 0.5s; /* Время эффекта */
+    }
 .in {
     height: 54px;
     width: 54px;
 }
-
+.contacts{
+    margin-top:40px;
+}
 table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    margin:30px;
+    margin: 30px;
     font-size: 14px;
     max-width: 70%;
     width: 70%;
@@ -1462,8 +1525,8 @@ main .ui-slider .ui-slider-range {
 }
 
 main .catalog .popular__more {
-  margin-top: 30px;
-  margin-bottom: 100px;
+  margin-top: 20px;
+  /*margin-bottom: 100px;*/
 }
 
 main .catalog__head {
@@ -1476,7 +1539,8 @@ main .head-catalog {
   align-items: center;
   gap: 20px;
   flex-wrap: wrap-reverse;
-  justify-content: space-evenly;
+  justify-content: start;
+  flex-direction: row-reverse;
 }
 
 main .head-catalog .head-catalog__filter {
@@ -1530,6 +1594,7 @@ main .body-catalog .body-catalog__title {
   line-height: 18px;
   letter-spacing: 0.03em;
   color: #000000;
+  margin-top: 50px;
   margin-bottom: 27px;
 }
 
@@ -1555,7 +1620,7 @@ main .body-catalog-menu {
 }
 
 main .body-catalog-menu .body-catalog-menu__item {
-  flex: 0 0 185px;
+  flex: 0 0 200px;
   padding: 10px;
 }
 
@@ -1563,6 +1628,7 @@ main .item-catalog .item-catalog__image {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 200px;
 }
 
 main .item-catalog .item-catalog__image * {
@@ -1636,7 +1702,6 @@ main .body-catalog-sidebar__search {
 
 main .select {
   position: relative;
-  margin-bottom: 27px;
 }
 
 main .select__toggle {
@@ -1676,10 +1741,11 @@ main .select__dropdown {
   z-index: 55;
 }
 
-main .select__dropdown li {
+main .select__dropdown button {
   transition: all 0.3s;
   cursor: pointer;
   padding: 10px;
+  display: block;
 }
 
 main .select_show .select__dropdown {
@@ -1692,9 +1758,49 @@ main .block-catalog {
   margin: 0 0 17px 0;
 }
 
-main .block-catalog:last-child {
-  margin-bottom: 45px;
-}
+    main .about__content {
+        display: flex;
+        gap: 50px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    main .about__title {
+        text-align: center;
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 100%;
+        margin: 0 0 30px 0;
+    }
+
+    main .about__text-block {
+        flex: 0 0 45%;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    main .about {
+        padding: 100px 0;
+    }
+
+    main .about__image {
+        flex: 0 0 45%;
+        overflow: hidden;
+        border-radius: 15px;
+    }
+
+        main .about__image img {
+            max-width: 100%;
+        }
+
+        main .about__text-block .about__text {
+            margin: 0 0 30px 0;
+        }
+
+    main .block-catalog:last-child {
+        margin-bottom: 45px;
+    }
 
 main .block-catalog .block-catalog__title {
   font-weight: 400;
@@ -2148,16 +2254,22 @@ main .control-account {
   justify-content: space-evenly;
 }
 
-main .control-account .control-account__button {
-  flex: 1 1 auto;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  padding: 15px;
-  transition: all 0.3s;
-}
+    main .control-account .control-account__button {
+        flex: 1 1 auto;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        padding: 15px;
+        transition: all 0.3s;
+    }
+
+    main .control-account .form-menu {
+        flex: 1 1 auto;
+        display: flex;
+        width: 100%;
+    }
 
 main .control-account .control-account__button:hover {
   background: rgba(72, 90, 145, 0.89);
@@ -2519,9 +2631,9 @@ main .photo-account .photo-account__change {
     margin-top: calc(20px + 10 * ((100vw - 320px) / 820));
   }
 
-  main .catalog .popular__more {
+/*  main .catalog .popular__more {
     margin-bottom: calc(30px + 70 * ((100vw - 320px) / 820));
-  }
+  }*/
 
   main .catalog__head {
     margin-top: calc(20px + 30 * ((100vw - 320px) / 820));
